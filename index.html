@@ -238,7 +238,7 @@
   // photos: [{ src, kind }] in display order. Older entries with interior/dish/vibe fields still work.
   function photosOf(p) {
     if (Array.isArray(p.photos) && p.photos.length) return p.photos;
-    return ["interior", "dish", "vibe"].filter((k) => p[k]).map((k) => ({ src: p[k], kind: k }));
+    return [["interior", "interior"], ["dish", "dish"], ["dish2", "dish"], ["vibe", "vibe"]].filter(([f]) => p[f]).map(([f, kind]) => ({ src: p[f], kind }));
   }
 
   function slider(p) {
