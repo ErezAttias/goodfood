@@ -211,7 +211,7 @@
   const maps = (p) => "https://www.google.com/maps/search/?api=1&query=" + enc(p.address ? `${p.name}, ${p.address}` : `${p.name} ${city(p)}`);
   const insta = (p) => p.instagram ? `https://www.instagram.com/${enc(p.instagram.replace(/^@/, ""))}/` : `https://www.google.com/search?q=${enc(`${p.name} ${city(p)} instagram`)}`;
   const reserve = (p) => p.reserve || `https://www.google.com/search?q=${enc(`${p.name} ${city(p)} reservation ontopo OR tabit`)}`;
-  const initials = (n) => n.replace(/^(The|Dr\.?)\s+/i, "").split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+  const initials = (n) => n.length <= 3 ? n : n.replace(/^(The|Dr\.?)\s+/i, "").split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
 
   function photo(src, label, p, fallback) {
     const inner = src
@@ -231,7 +231,7 @@
         <div class="body">
           <div class="id">
             <div class="logo">${p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.name)} logo">` : `<span class="mono" aria-hidden="true">${esc(initials(p.name))}</span>`}</div>
-            <div class="names"><h3>${esc(p.name)}</h3>${p.hebrew ? `<span class="he" lang="he" dir="rtl">${esc(p.hebrew)}</span>` : ""}</div>
+            <div class="names"><h3>${esc(p.name)}</h3>${p.hebrew && p.hebrew !== p.name ? `<span class="he" lang="he" dir="rtl">${esc(p.hebrew)}</span>` : ""}</div>
           </div>
           <div class="facts">
             <span class="kind">${esc(p.kind)}</span>

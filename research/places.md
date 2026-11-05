@@ -67,3 +67,59 @@ Alternates: Stephanie Smash Burger, Wolfnights.
 Sources: https://www.ynetnews.com/food/article/bk0kswez11x , https://www.mako.co.il/news-money/consumer/Article-b35412aa74ffa91027.htm ,
 https://timeout.co.il/הגלידריות-הכי-טובות/ , https://www.mako.co.il/news-money/consumer/Article-61455d1b0c10a91027.htm ,
 https://timeout.co.il/ampm-m25/ , https://www.timeout.com/israel/restaurants/vitrina-ibn-gvirol
+
+# Image sources
+Photos are from the places' own sites, Wolt, Time Out, and Google Maps visitor photos
+(via atly.com / mapstr.com). Google Maps visitor photos belong to the people who took them;
+replace them with official photos before sharing the guide widely.
+
+| Place | File | Source page |
+|---|---|---|
+| abu-hassan | dish | https://mapstr.com/place/uVayeCRWevg |
+| abu-hassan | vibe | https://mapstr.com/place/uVayeCRWevg |
+| abu-hassan | logo | https://wolt.com/en/isr/tel-aviv/restaurant/abu-hassan |
+| bar51 | dish | https://www.atly.com/location/Bar51 |
+| bar51 | vibe | https://www.bar51tlv.com/ |
+| bar51 | logo | https://www.bar51tlv.com/ |
+| brooklyn | dish | https://www.timeout.com/israel/restaurants/brooklyn-pizza |
+| brooklyn | vibe | https://brooklynpizza.co.il/ |
+| brooklyn | logo | https://brooklynpizza.co.il/ |
+| cafe-popular | dish | https://www.atly.com/location/CafePopular |
+| cafe-popular | vibe | https://jacobsamuelhotel.com/cafe-popular |
+| cafe-popular | logo | https://ontopo.com/en/il/page/79798974 |
+| cassata | dish | https://wolt.com/en/isr/tel-aviv/restaurant/cassata |
+| cassata | vibe | https://www.atly.com/location/Cassata |
+| cassata | logo | https://wolt.com/en/isr/tel-aviv/restaurant/cassata |
+| gdb | dish | https://www.atly.com/location/GDB |
+| gdb | vibe | https://www.atly.com/location/GDB |
+| habasta | dish | https://www.atly.com/location/HaBasta |
+| habasta | vibe | https://www.atly.com/location/HaBasta |
+| hakosem | dish | https://www.timeout.com/israel/restaurants/hakosem |
+| hakosem | vibe | https://www.atly.com/location/HaKosem2 |
+| har-sinai | dish | https://wolt.com/en/isr/tel-aviv/restaurant/pizza-har-sinai |
+| har-sinai | vibe | https://www.atly.com/location/PizzaMountSinai |
+| har-sinai | logo | https://pizzaharsinai.co.il/ |
+| jango | dish | https://wolt.com/en/isr/tel-aviv/restaurant/jango-tel-aviv |
+| jango | vibe | https://www.atly.com/location/JangoBurger |
+| jango | logo | https://wolt.com/en/isr/tel-aviv/restaurant/jango-tel-aviv |
+| jasmino | dish | https://www.atly.com/location/Jasmino |
+| jasmino | vibe | https://www.atly.com/location/Jasmino |
+| lila | dish | https://wolt.com/en/isr/tel-aviv/restaurant/lila-pizza |
+| lila | vibe | https://www.atly.com/location/PizzaLila |
+| otello | dish | https://www.atly.com/location/Otello |
+| otello | vibe | https://www.atly.com/location/Otello |
+| otello | logo | https://wolt.com/en/isr/tel-aviv/restaurant/otellogelato |
+| prozdor | dish | https://www.atly.com/location/Prozdor |
+| prozdor | vibe | https://www.prozdor.co.il/ |
+| prozdor | logo | https://www.prozdor.co.il/ |
+| shila | dish | https://www.timeout.com/israel/restaurants/shila |
+| shila | vibe | https://www.shila-rest.co.il/ |
+| shila | logo | https://www.shila-rest.co.il/ |
+| sun-young | dish | https://sunyoung.co.il/ |
+| sun-young | vibe | https://www.atly.com/location/SunYoung |
+| sun-young | logo | https://sunyoung.co.il/ |
+| thai-house | dish | https://www.thai-house.co.il/ |
+| thai-house | vibe | https://www.thai-house.co.il/ |
+| thai-house | logo | https://www.thai-house.co.il/ |
+
+No logo found for: GDB, HaBasta, HaKosem, Jasmino, Pizza Lila (the site shows initials).
