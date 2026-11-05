@@ -18,7 +18,8 @@
     --sun: #f3b43a;
     --c-restaurants: #0b6b88;
     --c-street: #c4651c;
-    --c-bars: #7a3b69;
+    --c-pizza: #b23a2b;
+    --c-burgers: #6b5a1e;
     --c-sweets: #c4416a;
     --ph-a: #e7e4db;
     --ph-b: #dcd8cd;
@@ -30,14 +31,14 @@
     :root:not([data-theme="light"]) {
       --paper: #111316; --card: #1a1d22; --ink: #f1efe9; --ink-2: #a2a6ae; --rule: #2c3038;
       --sea: #4fb3d1; --on-sea: #06222c; --sun: #f3b43a;
-      --c-restaurants: #4fb3d1; --c-street: #f0954a; --c-bars: #c47cb2; --c-sweets: #f08aa7;
+      --c-restaurants: #4fb3d1; --c-street: #f0954a; --c-pizza: #ef7a68; --c-burgers: #d6bd6a; --c-sweets: #f08aa7;
       --ph-a: #22262d; --ph-b: #2b3038; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --paper: #111316; --card: #1a1d22; --ink: #f1efe9; --ink-2: #a2a6ae; --rule: #2c3038;
     --sea: #4fb3d1; --on-sea: #06222c; --sun: #f3b43a;
-    --c-restaurants: #4fb3d1; --c-street: #f0954a; --c-bars: #c47cb2; --c-sweets: #f08aa7;
+    --c-restaurants: #4fb3d1; --c-street: #f0954a; --c-pizza: #ef7a68; --c-burgers: #d6bd6a; --c-sweets: #f08aa7;
     --ph-a: #22262d; --ph-b: #2b3038; color-scheme: dark;
   }
 
@@ -193,8 +194,9 @@
   const LISTS = [
     { id: "restaurants", label: "Restaurants", blurb: "Sit-down dinners worth planning an evening around.", c: "--c-restaurants" },
     { id: "street", label: "Street food", blurb: "Counters, stalls and shared tables. Cheap, fast, and often the best meal of the trip.", c: "--c-street" },
-    { id: "bars", label: "Bars", blurb: "Where to go for a drink after dinner, or instead of it.", c: "--c-bars" },
-    { id: "sweets", label: "Dessert", blurb: "Gelato, pastries and the sweet stuff.", c: "--c-sweets" },
+    { id: "pizza", label: "Pizza", blurb: "Tel Aviv takes pizza seriously. These are the ones locals line up for.", c: "--c-pizza" },
+    { id: "burgers", label: "Burgers", blurb: "For when you want something familiar, done very well.", c: "--c-burgers" },
+    { id: "sweets", label: "Dessert", blurb: "Gelato and the sweet stuff, for the walk after dinner.", c: "--c-sweets" },
   ];
   const DATA = window.GOODFOOD || {};
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
