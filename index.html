@@ -1,253 +1,273 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GoodFood Tel Aviv</title>
-  <meta name="description" content="Where to eat in Tel Aviv — restaurant picks for colleagues visiting the JFrog Israel offices." />
-  <meta property="og:title" content="GoodFood Tel Aviv" />
-  <meta property="og:description" content="Where to eat in Tel Aviv — hand-picked by your Israeli colleagues." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥙</text></svg>" />
-  <style>
-    :root {
-      --bg: #faf7f2;
-      --surface: #ffffff;
-      --text: #1f1d1a;
-      --muted: #6b655c;
-      --line: #e8e2d8;
-      --accent: #2f7d4f;
-      --accent-soft: #e4f1e8;
-      --chip: #f1ece4;
-      --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.05);
-      --on-accent: #ffffff;
+<title>Eat Tel Aviv</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Where to eat and drink in Tel Aviv, picked by your colleagues at JFrog Israel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=Rubik:wght@500&display=swap">
+<style>
+  /* Layout: a pocket guide. Big type opener, four list tabs, one tall editorial entry per place:
+     logo + name (with Hebrew for the taxi driver), two photos (food / room), why, order, three actions. */
+  :root {
+    --paper: #f3f2ee;        /* White City plaster */
+    --card: #ffffff;
+    --ink: #15171c;
+    --ink-2: #5b5f69;
+    --rule: #dddbd4;
+    --sea: #0b6b88;          /* Mediterranean, the one accent */
+    --on-sea: #ffffff;
+    --sun: #f3b43a;
+    --c-restaurants: #0b6b88;
+    --c-street: #c4651c;
+    --c-bars: #7a3b69;
+    --c-sweets: #c4416a;
+    --ph-a: #e7e4db;
+    --ph-b: #dcd8cd;
+    --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+    --hebrew: "Rubik", "Arial Hebrew", "Noto Sans Hebrew", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #111316; --card: #1a1d22; --ink: #f1efe9; --ink-2: #a2a6ae; --rule: #2c3038;
+      --sea: #4fb3d1; --on-sea: #06222c; --sun: #f3b43a;
+      --c-restaurants: #4fb3d1; --c-street: #f0954a; --c-bars: #c47cb2; --c-sweets: #f08aa7;
+      --ph-a: #22262d; --ph-b: #2b3038; color-scheme: dark;
     }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --bg: #161513; --surface: #1f1e1b; --text: #f1ede6; --muted: #a39d93;
-        --line: #33312c; --accent: #6cc28f; --accent-soft: #1f3a2a; --chip: #2a2824;
-        --shadow: none; --on-accent: #10251a;
-      }
-    }
-    :root[data-theme="dark"] {
-      --bg: #161513; --surface: #1f1e1b; --text: #f1ede6; --muted: #a39d93;
-      --line: #33312c; --accent: #6cc28f; --accent-soft: #1f3a2a; --chip: #2a2824;
-      --shadow: none; --on-accent: #10251a;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
-    header { padding: 40px 0 16px; }
-    h1 { font-size: clamp(28px, 5vw, 40px); margin: 0 0 6px; letter-spacing: -.02em; }
-    .lead { color: var(--muted); margin: 0; max-width: 640px; }
+  }
+  :root[data-theme="dark"] {
+    --paper: #111316; --card: #1a1d22; --ink: #f1efe9; --ink-2: #a2a6ae; --rule: #2c3038;
+    --sea: #4fb3d1; --on-sea: #06222c; --sun: #f3b43a;
+    --c-restaurants: #4fb3d1; --c-street: #f0954a; --c-bars: #c47cb2; --c-sweets: #f08aa7;
+    --ph-a: #22262d; --ph-b: #2b3038; color-scheme: dark;
+  }
 
-    details.tips {
-      background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
-      padding: 14px 18px; margin: 20px 0; box-shadow: var(--shadow);
-    }
-    details.tips summary { cursor: pointer; font-weight: 600; }
-    details.tips ul { margin: 12px 0 4px; padding-left: 20px; }
-    details.tips li { margin-bottom: 6px; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 16px/1.55 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+    z-index: 10; background: var(--paper);
+  }
+  .wrap {
+    max-width: 760px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; border-radius: 6px; }
 
-    .controls {
-      position: sticky; top: 0; z-index: 5; background: var(--bg);
-      padding: 12px 0; border-bottom: 1px solid var(--line);
-    }
-    @media (max-width: 600px) { .controls { position: static; } }
-    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-    .row + .row { margin-top: 10px; }
-    input[type=search], select {
-      font: inherit; color: var(--text); background: var(--surface);
-      border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px;
-    }
-    input[type=search] { flex: 1 1 240px; min-width: 0; }
-    select { flex: 0 1 auto; }
-    .chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
-    .chips::-webkit-scrollbar { display: none; }
-    .chip {
-      font: inherit; font-size: 14px; white-space: nowrap; cursor: pointer;
-      border: 1px solid transparent; background: var(--chip); color: var(--text);
-      border-radius: 999px; padding: 5px 12px;
-    }
-    .chip[aria-pressed=true] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
-    .count { color: var(--muted); font-size: 14px; margin: 14px 0 6px; }
+  /* Opener */
+  .hero { padding-block: 44px 28px; }
+  .kicker {
+    font: 600 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .kicker i { width: 8px; height: 8px; border-radius: 50%; background: var(--sun); display: inline-block; }
+  h1 {
+    font: 800 clamp(52px, 14vw, 108px)/.88 var(--display); letter-spacing: -.045em;
+    margin: 18px 0 18px; text-wrap: balance;
+  }
+  h1 .he { display: block; font: 500 clamp(18px, 4vw, 24px)/1 var(--hebrew); letter-spacing: 0; color: var(--ink-2); margin-top: 16px; text-align: left; }
+  .intro { font-size: 18px; color: var(--ink-2); max-width: 34em; margin: 0; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; padding-bottom: 40px; }
-    .card {
-      background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
-      padding: 18px; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--shadow);
-    }
-    .card h2 { font-size: 20px; margin: 0; }
-    .meta { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 10px; }
-    .meta .price { color: var(--text); font-weight: 600; letter-spacing: .05em; }
-    .meta .price span { opacity: .25; }
-    .cuisine { color: var(--accent); font-weight: 600; font-size: 14px; }
-    .desc { margin: 0; }
-    .must { margin: 0; font-size: 14px; }
-    .must b { font-weight: 600; }
-    .tags { display: flex; flex-wrap: wrap; gap: 4px; }
-    .tag { font-size: 12px; background: var(--chip); color: var(--muted); border-radius: 6px; padding: 2px 8px; }
-    .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
-    .btn {
-      flex: 1 1 auto; text-align: center; text-decoration: none; font-size: 14px; font-weight: 600;
-      border-radius: 10px; padding: 9px 10px; border: 1px solid var(--line); color: var(--text); background: var(--bg);
-    }
-    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-    .btn.disabled { opacity: .6; pointer-events: none; }
-    .empty { color: var(--muted); padding: 40px 0; text-align: center; grid-column: 1 / -1; }
-    footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding: 20px 0 40px; }
-    footer a { color: inherit; }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <h1>Where to eat in Tel Aviv 🥙</h1>
-      <p class="lead">Welcome to Israel! These are the places your Israeli colleagues actually go to. Filter by cuisine, budget or occasion, then tap through to Instagram, Maps or booking.</p>
-    </header>
+  /* Tabs */
+  .tabs-bar {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+    background: var(--paper); border-bottom: 1px solid var(--rule);
+  }
+  .tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-block: 10px; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 0 0 auto; display: flex; align-items: center; gap: 8px; cursor: pointer;
+    font: 600 15px/1 var(--body); color: var(--ink-2);
+    background: transparent; border: 0; border-radius: 999px; padding: 10px 14px;
+  }
+  .tab .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+  .tab .n { font-variant-numeric: tabular-nums; font-weight: 500; opacity: .7; }
+  .tab[aria-selected="true"] { background: var(--ink); color: var(--paper); }
 
-    <details class="tips">
-      <summary>Good to know before you go</summary>
-      <ul>
-        <li><b>Book ahead.</b> Popular places fill up, especially Thursday and Friday nights. Most restaurants use <b>Ontopo</b> or <b>Tabit</b> for online booking — no Hebrew needed.</li>
-        <li><b>The weekend is Friday–Saturday.</b> Shabbat runs Friday sunset to Saturday night. Many places stay open, but kosher restaurants close, and some close Friday afternoon.</li>
-        <li><b>Tipping:</b> 12–15% is standard at sit-down restaurants and is usually <i>not</i> included in the bill. Tell the server the total you want to charge, including the tip.</li>
-        <li><b>Cards</b> are accepted almost everywhere; Apple Pay / Google Pay work widely.</li>
-        <li><b>Dinner runs late.</b> 8:30–9:00pm is a normal dinner time. Lunch deals ("business lunch") are common on weekdays.</li>
-        <li><b>Getting around:</b> use <b>Gett</b> or <b>Yango</b> for taxis. For delivery to your hotel, use <b>Wolt</b>.</li>
-        <li><b>Tap water</b> is safe to drink.</li>
-      </ul>
-    </details>
+  /* List header */
+  .list-head { padding-block: 32px 4px; }
+  .list-head h2 { font: 700 36px/1 var(--display); letter-spacing: -.03em; margin: 0 0 8px; }
+  .list-head p { margin: 0; color: var(--ink-2); max-width: 36em; }
 
-    <div class="controls">
-      <div class="row">
-        <input id="q" type="search" placeholder="Search name, dish, cuisine…" aria-label="Search" />
-        <select id="area" aria-label="Area"><option value="">All areas</option></select>
-        <select id="price" aria-label="Budget">
-          <option value="">Any budget</option>
-          <option value="1">$ — cheap eats</option>
-          <option value="2">up to $$</option>
-          <option value="3">up to $$$</option>
-          <option value="4">up to $$$$</option>
-        </select>
-      </div>
-      <div class="row"><div class="chips" id="cuisines" role="group" aria-label="Cuisine"></div></div>
-      <div class="row"><div class="chips" id="tags" role="group" aria-label="Occasion"></div></div>
-    </div>
+  /* Entry */
+  .entries { display: grid; gap: 20px; padding-block: 20px 48px; }
+  .entry { background: var(--card); border-radius: 22px; overflow: hidden; }
+  .photos { display: grid; grid-template-columns: 1.25fr 1fr; gap: 3px; aspect-ratio: 16 / 10; max-width: 100%; }
+  .ph { position: relative; height: 100%; min-width: 0; overflow: hidden; background: var(--ph-a); margin: 0; }
+  .ph + .ph { background: var(--ph-b); }
+  .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph figcaption {
+    position: absolute; left: 10px; top: 10px;
+    font: 600 11px/1 var(--body); letter-spacing: .1em; text-transform: uppercase;
+    background: var(--card); color: var(--ink);
+    padding: 6px 8px; border-radius: 6px;
+  }
+  .ph .empty {
+    position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px;
+    color: var(--ink-2); font: 500 13px/1.3 var(--body);
+  }
+  .ph .empty b { display: block; font: 700 clamp(20px, 5.5vw, 32px)/1 var(--display); letter-spacing: -.03em; color: var(--c); margin-bottom: 6px; }
 
-    <p class="count" id="count"></p>
-    <main class="grid" id="grid"></main>
+  .body { padding: 0 20px 20px; display: grid; gap: 14px; }
+  .id { display: flex; align-items: flex-end; gap: 14px; margin-top: -30px; position: relative; }
+  .logo {
+    flex: 0 0 auto; width: 68px; height: 68px; border-radius: 50%;
+    background: var(--card); border: 3px solid var(--card); box-shadow: 0 0 0 1px var(--rule);
+    display: grid; place-items: center; overflow: hidden;
+  }
+  .logo img { width: 100%; height: 100%; object-fit: cover; }
+  .logo .mono { font: 800 22px/1 var(--display); color: var(--c); letter-spacing: -.04em; }
+  .names { min-width: 0; padding-bottom: 2px; }
+  .names h3 { font: 700 28px/1 var(--display); letter-spacing: -.03em; margin: 0; text-wrap: balance; }
+  .names .he { font: 500 15px/1 var(--hebrew); color: var(--ink-2); margin-top: 6px; display: block; text-align: left; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; color: var(--ink-2); }
+  .facts .kind { color: var(--c); font-weight: 600; }
+  .price { font-weight: 600; color: var(--ink); letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+  .price s { text-decoration: none; opacity: .25; }
+  .why { margin: 0; font-size: 16.5px; max-width: 38em; }
+  .order { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: baseline; font-size: 15px; }
+  .order span { font: 600 11px/1 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
 
-    <footer>
-      Missing a favorite, or found a broken link? Let us know and we'll add it.
-      Info changes — always double-check opening hours before you go.
-    </footer>
-  </div>
+  .actions { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 8px; padding-top: 4px; }
+  .act {
+    display: flex; align-items: center; justify-content: center; gap: 7px; min-width: 0;
+    font: 600 14px/1 var(--body); text-decoration: none; white-space: nowrap;
+    padding: 13px 10px; border-radius: 12px; border: 1px solid var(--rule); color: var(--ink); background: transparent;
+  }
+  .act svg { width: 17px; height: 17px; flex: 0 0 auto; }
+  .act.primary { background: var(--sea); border-color: var(--sea); color: var(--on-sea); }
+  .act.walkin { color: var(--ink-2); border-style: dashed; cursor: default; }
 
-  <script src="restaurants.js"></script>
-  <script>
-    const TAG_LABELS = {
-      "near-office": "📍 Near the office",
-      "team-dinner": "👥 Team dinner",
-      "quick-lunch": "⚡ Quick lunch",
-      "breakfast": "🍳 Breakfast",
-      "special-occasion": "✨ Special occasion",
-      "late-night": "🌙 Late night",
-      "view": "🌅 Sea view",
-      "vegetarian-friendly": "🥗 Vegetarian-friendly",
-      "kosher": "✡️ Kosher",
-      "open-shabbat": "🕯️ Open on Shabbat",
-    };
+  /* Tips */
+  .tips { border-top: 1px solid var(--rule); padding-block: 36px 20px; }
+  .tips h2 { font: 700 28px/1.05 var(--display); letter-spacing: -.03em; margin: 0 0 18px; }
+  .tips dl { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin: 0; }
+  @media (min-width: 620px) { .tips dl { grid-template-columns: 1fr 1fr; gap: 18px 32px; } }
+  .tips dt { font-weight: 600; }
+  .tips dd { margin: 2px 0 0; color: var(--ink-2); font-size: 15px; }
+  footer { color: var(--ink-2); font-size: 14px; padding-block: 24px 56px; }
 
-    const data = (window.RESTAURANTS || []).slice().sort((a, b) => a.name.localeCompare(b.name));
-    const $ = (id) => document.getElementById(id);
-    const state = { q: "", area: "", price: "", cuisine: "", tag: "" };
+  @media (max-width: 440px) {
+    .body { padding: 0 16px 16px; }
+    .actions { grid-template-columns: 1fr 1fr; }
+    .actions > :first-child { grid-column: 1 / -1; }
+  }
+</style>
 
-    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-    const enc = encodeURIComponent;
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker"><i></i>JFrog Israel · Visitor's pocket guide</div>
+    <h1>Eat Tel Aviv. <span class="he" lang="he" dir="rtl">אוכלים בתל אביב</span></h1>
+    <p class="intro">No search, no ratings, no endless options. Just the short list of places we take our own friends to. Each place has its Hebrew name, so you can show it to the taxi driver.</p>
+  </header>
+</div>
 
-    const mapsUrl = (r) => "https://www.google.com/maps/search/?api=1&query=" +
-      enc(r.address ? `${r.name}, ${r.address}` : `${r.name} ${r.city}`);
-    const instaUrl = (r) => r.instagram
-      ? `https://www.instagram.com/${enc(r.instagram.replace(/^@/, ""))}/`
-      : `https://www.google.com/search?q=${enc(`${r.name} ${r.city} instagram`)}`;
-    const reserveUrl = (r) => r.reservation ||
-      `https://www.google.com/search?q=${enc(`${r.name} ${r.city} reservation ontopo OR tabit`)}`;
+<nav class="tabs-bar" aria-label="Lists">
+  <div class="wrap"><div class="tabs" role="tablist" id="tabs"></div></div>
+</nav>
 
-    // Build filter controls from the data
-    const uniq = (arr) => [...new Set(arr)].sort((a, b) => a.localeCompare(b));
-    uniq(data.map((r) => r.area)).forEach((a) => {
-      $("area").insertAdjacentHTML("beforeend", `<option value="${esc(a)}">${esc(a)}</option>`);
-    });
+<main class="wrap">
+  <section id="list" role="tabpanel"></section>
 
-    function chipGroup(el, key, items) {
-      el.innerHTML = [["", "All"], ...items]
-        .map(([v, label]) => `<button class="chip" data-v="${esc(v)}" aria-pressed="${state[key] === v}">${esc(label)}</button>`)
-        .join("");
-      el.addEventListener("click", (e) => {
-        const b = e.target.closest(".chip");
-        if (!b) return;
-        state[key] = state[key] === b.dataset.v ? "" : b.dataset.v;
-        el.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", c.dataset.v === state[key]));
-        render();
-      });
-    }
-    chipGroup($("cuisines"), "cuisine", uniq(data.map((r) => r.cuisine)).map((c) => [c, c]));
-    const usedTags = Object.keys(TAG_LABELS).filter((t) => data.some((r) => (r.tags || []).includes(t)));
-    chipGroup($("tags"), "tag", usedTags.map((t) => [t, TAG_LABELS[t]]));
+  <section class="tips">
+    <h2>Before you go</h2>
+    <dl>
+      <div><dt>Book ahead</dt><dd>Thursday and Friday nights fill up. Most places book through Ontopo or Tabit, both in English.</dd></div>
+      <div><dt>The weekend is Friday–Saturday</dt><dd>Shabbat runs from Friday sunset to Saturday night. Many places stay open; kosher ones close.</dd></div>
+      <div><dt>Tip 12–15%</dt><dd>Service is usually not included. Tell the server the total you want charged, tip included.</dd></div>
+      <div><dt>Dinner is late</dt><dd>8:30–9pm is normal. Weekday "business lunch" menus are a good deal.</dd></div>
+      <div><dt>Getting around</dt><dd>Gett or Yango for taxis, Wolt for delivery to the hotel. Tap water is fine to drink.</dd></div>
+      <div><dt>Cards everywhere</dt><dd>Apple Pay and Google Pay work almost everywhere, including most street stalls.</dd></div>
+    </dl>
+  </section>
+  <footer>Picked by the JFrog Israel team. Opening hours change, so check before you go.</footer>
+</main>
 
-    function matches(r) {
-      if (state.area && r.area !== state.area) return false;
-      if (state.price && (r.price || 0) > Number(state.price)) return false;
-      if (state.cuisine && r.cuisine !== state.cuisine) return false;
-      if (state.tag && !(r.tags || []).includes(state.tag)) return false;
-      if (state.q) {
-        const hay = [r.name, r.cuisine, r.area, r.city, r.description, r.mustTry, ...(r.tags || []).map((t) => TAG_LABELS[t] || t)]
-          .join(" ").toLowerCase();
-        if (!state.q.toLowerCase().split(/\s+/).every((w) => hay.includes(w))) return false;
-      }
-      return true;
-    }
+<script src="restaurants.js"></script>
+<script>
+  const LISTS = [
+    { id: "restaurants", label: "Restaurants", blurb: "Sit-down dinners worth planning an evening around.", c: "--c-restaurants" },
+    { id: "street", label: "Street food", blurb: "Counters, stalls and shared tables. Cheap, fast, and often the best meal of the trip.", c: "--c-street" },
+    { id: "bars", label: "Bars", blurb: "Where to go for a drink after dinner, or instead of it.", c: "--c-bars" },
+    { id: "sweets", label: "Dessert", blurb: "Gelato, pastries and the sweet stuff.", c: "--c-sweets" },
+  ];
+  const DATA = window.GOODFOOD || {};
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const enc = encodeURIComponent;
+  const ICON = {
+    cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+    ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  };
 
-    function card(r) {
-      const p = Math.max(1, Math.min(4, r.price || 1));
-      const price = "$".repeat(p) + `<span>${"$".repeat(4 - p)}</span>`;
-      const reserve = r.walkIn && !r.reservation
-        ? `<span class="btn disabled" title="This place doesn't take reservations">Walk-in only</span>`
-        : `<a class="btn primary" href="${esc(reserveUrl(r))}" target="_blank" rel="noopener">Reserve</a>`;
-      return `
-        <article class="card">
-          <div class="cuisine">${esc(r.cuisine)}</div>
-          <h2>${esc(r.name)}</h2>
-          <div class="meta"><span class="price" aria-label="Price level ${p} of 4">${price}</span><span>${esc(r.area)}${r.area !== r.city ? ", " + esc(r.city) : ""}</span></div>
-          <p class="desc">${esc(r.description)}</p>
-          ${r.mustTry ? `<p class="must"><b>Must try:</b> ${esc(r.mustTry)}</p>` : ""}
-          ${(r.tags || []).length ? `<div class="tags">${r.tags.map((t) => `<span class="tag">${esc(TAG_LABELS[t] || t)}</span>`).join("")}</div>` : ""}
-          <div class="actions">
-            ${reserve}
-            <a class="btn" href="${esc(instaUrl(r))}" target="_blank" rel="noopener">Instagram</a>
-            <a class="btn" href="${esc(mapsUrl(r))}" target="_blank" rel="noopener">Map</a>
+  const city = (p) => (p.area === "Jaffa" ? "Jaffa" : "Tel Aviv");
+  const maps = (p) => "https://www.google.com/maps/search/?api=1&query=" + enc(p.address ? `${p.name}, ${p.address}` : `${p.name} ${city(p)}`);
+  const insta = (p) => p.instagram ? `https://www.instagram.com/${enc(p.instagram.replace(/^@/, ""))}/` : `https://www.google.com/search?q=${enc(`${p.name} ${city(p)} instagram`)}`;
+  const reserve = (p) => p.reserve || `https://www.google.com/search?q=${enc(`${p.name} ${city(p)} reservation ontopo OR tabit`)}`;
+  const initials = (n) => n.replace(/^(The|Dr\.?)\s+/i, "").split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+
+  function photo(src, label, p, fallback) {
+    const inner = src
+      ? `<img src="${esc(src)}" alt="${esc(label === "The food" ? `Food at ${p.name}` : `Inside ${p.name}`)}" loading="lazy">`
+      : `<div class="empty"><div><b>${esc(fallback)}</b>Photo coming soon</div></div>`;
+    return `<figure class="ph">${inner}<figcaption>${label}</figcaption></figure>`;
+  }
+
+  function entry(p, list) {
+    const n = Math.max(1, Math.min(4, p.price || 1));
+    const primary = p.walkIn && !p.reserve
+      ? `<span class="act walkin" title="No reservations, just show up">Walk in, no booking</span>`
+      : `<a class="act primary" href="${esc(reserve(p))}" target="_blank" rel="noopener">${ICON.cal}Book a table</a>`;
+    return `
+      <article class="entry" style="--c: var(${list.c})">
+        <div class="photos">${photo(p.dish, "The food", p, p.kind.split("·")[0].trim())}${photo(p.vibe, "The room", p, p.area)}</div>
+        <div class="body">
+          <div class="id">
+            <div class="logo">${p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.name)} logo">` : `<span class="mono" aria-hidden="true">${esc(initials(p.name))}</span>`}</div>
+            <div class="names"><h3>${esc(p.name)}</h3>${p.hebrew ? `<span class="he" lang="he" dir="rtl">${esc(p.hebrew)}</span>` : ""}</div>
           </div>
-        </article>`;
-    }
+          <div class="facts">
+            <span class="kind">${esc(p.kind)}</span>
+            <span>${esc(p.area)}</span>
+            <span class="price" aria-label="Price ${n} of 4">${"$".repeat(n)}<s>${"$".repeat(4 - n)}</s></span>
+          </div>
+          <p class="why">${esc(p.why)}</p>
+          ${p.order ? `<div class="order"><span>Order</span><div>${esc(p.order)}</div></div>` : ""}
+          <div class="actions">
+            ${primary}
+            <a class="act" href="${esc(insta(p))}" target="_blank" rel="noopener">${ICON.ig}Instagram</a>
+            <a class="act" href="${esc(maps(p))}" target="_blank" rel="noopener">${ICON.pin}Directions</a>
+          </div>
+        </div>
+      </article>`;
+  }
 
-    function render() {
-      const list = data.filter(matches);
-      $("grid").innerHTML = list.length
-        ? list.map(card).join("")
-        : `<div class="empty">No matches — try clearing a filter.</div>`;
-      $("count").textContent = `${list.length} of ${data.length} places`;
-    }
+  const tabsEl = document.getElementById("tabs");
+  const listEl = document.getElementById("list");
+  tabsEl.innerHTML = LISTS.map((l) => `
+    <button class="tab" role="tab" id="tab-${l.id}" data-id="${l.id}" style="--c: var(${l.c})" aria-controls="list">
+      <span class="dot"></span>${l.label}<span class="n">${(DATA[l.id] || []).length}</span>
+    </button>`).join("");
 
-    $("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
-    $("area").addEventListener("change", (e) => { state.area = e.target.value; render(); });
-    $("price").addEventListener("change", (e) => { state.price = e.target.value; render(); });
-    render();
-  </script>
-</body>
-</html>
+  function show(id) {
+    const list = LISTS.find((l) => l.id === id) || LISTS[0];
+    tabsEl.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", t.dataset.id === list.id));
+    listEl.setAttribute("aria-labelledby", "tab-" + list.id);
+    listEl.innerHTML = `
+      <div class="list-head"><h2>${list.label}</h2><p>${list.blurb}</p></div>
+      <div class="entries">${(DATA[list.id] || []).map((p) => entry(p, list)).join("")}</div>`;
+  }
+  tabsEl.addEventListener("click", (e) => {
+    const t = e.target.closest(".tab"); if (!t) return;
+    if (location.hash !== "#" + t.dataset.id) location.hash = t.dataset.id; else show(t.dataset.id);
+    const bar = document.querySelector(".tabs-bar");
+    if (bar.getBoundingClientRect().top <= 1) window.scrollTo({ top: bar.offsetTop });
+  });
+  window.addEventListener("hashchange", () => show(location.hash.slice(1)));
+  show(location.hash.slice(1));
+</script>

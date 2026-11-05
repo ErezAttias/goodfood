@@ -1,243 +1,165 @@
 /*
- * GoodFood — restaurant list.
+ * GoodFood — the list. This is the only file you edit to change what's on the site.
  *
- * This is the ONLY file you need to edit to add, remove or update places.
+ * Four lists: "restaurants", "street", "bars", "sweets".
+ * Each place:
+ *   name       English name (required)
+ *   hebrew     Hebrew name — shown so guests can show it to a taxi driver
+ *   kind       Short cuisine / type label ("Seafood", "Cocktail bar")
+ *   area       Neighborhood
+ *   price      1-4
+ *   why        2-3 sentences: why it's on the list
+ *   order      What to order
+ *   address    Street address (used for directions)
+ *   instagram  Handle without @
+ *   reserve    Full booking URL (Ontopo / Tabit / own site). Leave "" if walk-in.
+ *   walkIn     true if they don't take bookings
+ *   logo       Path to logo image, e.g. "images/port-said/logo.png"
+ *   dish       Path to a food photo, e.g. "images/port-said/dish.jpg"
+ *   vibe       Path to an atmosphere photo, e.g. "images/port-said/vibe.jpg"
  *
- * Fields:
- *   name         (required) Restaurant name in English
- *   cuisine      (required) Short cuisine label, used for the cuisine filter
- *   area         (required) Neighborhood, used for the area filter
- *   city         (required) "Tel Aviv", "Jaffa", "Netanya", ...
- *   price        1-4  ($ = cheap street food, $$$$ = special occasion)
- *   description  1-3 sentences in plain English for a first-time visitor
- *   mustTry      Optional: dish(es) to order
- *   address      Optional: street address (used for the Maps link)
- *   instagram    Optional: Instagram handle WITHOUT the @ (e.g. "portsaid_tlv")
- *   reservation  Optional: full booking URL (Ontopo / Tabit / restaurant site)
- *   walkIn       Optional: true if the place doesn't take bookings
- *   tags         Optional: any of "near-office", "team-dinner", "vegetarian-friendly",
- *                "kosher", "open-shabbat", "late-night", "breakfast", "quick-lunch",
- *                "special-occasion", "view"
- *   addedBy      Optional: who recommends it
- *
- * If `instagram` or `reservation` is empty the site falls back to a search link,
- * so the buttons always work — but filling in the real links is better.
+ * Missing photos/logo show a placeholder. Missing instagram/reserve fall back to a search.
  */
-window.RESTAURANTS = [
-  {
-    name: "Port Said",
-    cuisine: "Israeli / Mediterranean",
-    area: "City Center",
-    city: "Tel Aviv",
-    price: 2,
-    description:
-      "Chef Eyal Shani's loud, fun bar-restaurant next to the Great Synagogue. Sharing plates, vinyl records and a young crowd spilling onto the street. The quintessential Tel Aviv night out.",
-    mustTry: "Roasted cauliflower, beef sinia, anything off the daily specials board",
-    address: "Har Sinai St 5, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    walkIn: true,
-    tags: ["late-night", "vegetarian-friendly"],
-  },
-  {
-    name: "Miznon",
-    cuisine: "Israeli Street Food",
-    area: "City Center",
-    city: "Tel Aviv",
-    price: 1,
-    description:
-      "The original location of Eyal Shani's pita empire (now also in NYC, Paris and Vienna). Order at the counter, grab a seat if you can, eat with your hands.",
-    mustTry: "Whole roasted cauliflower, minute steak pita, ratatouille pita",
-    address: "Ibn Gabirol St 23, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    walkIn: true,
-    tags: ["quick-lunch", "vegetarian-friendly"],
-  },
-  {
-    name: "Claro",
-    cuisine: "Mediterranean Bistro",
-    area: "Sarona",
-    city: "Tel Aviv",
-    price: 3,
-    description:
-      "Chef Ran Shmueli's market-driven restaurant in a restored Templer building in Sarona. Big, warm space that works great for a team dinner, close to the Tel Aviv office.",
-    mustTry: "Taboon-baked dishes, seasonal vegetables, fish of the day",
-    address: "HaArba'a St 23, Sarona, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    tags: ["near-office", "team-dinner", "vegetarian-friendly"],
-  },
-  {
-    name: "Sarona Market",
-    cuisine: "Food Hall",
-    area: "Sarona",
-    city: "Tel Aviv",
-    price: 2,
-    description:
-      "Indoor gourmet food hall with dozens of stalls — something for everyone. Easiest option for a quick lunch near the Tel Aviv office, and great for picking up local treats to take home.",
-    mustTry: "Walk around and graze",
-    address: "Kalman Magen St 3, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    walkIn: true,
-    tags: ["near-office", "quick-lunch", "vegetarian-friendly"],
-  },
-  {
-    name: "Taizu",
-    cuisine: "Pan-Asian",
-    area: "Menachem Begin",
-    city: "Tel Aviv",
-    price: 4,
-    description:
-      "Chef Yuval Ben Neriah's dramatic, temple-like dining room serving Southeast Asian and Indian-inspired street food, refined. Book well in advance.",
-    mustTry: "Tasting menu, dim sum, cocktails at the bar",
-    address: "Menachem Begin Rd 23, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    tags: ["special-occasion", "team-dinner"],
-  },
-  {
-    name: "Shila",
-    cuisine: "Seafood",
-    area: "North Tel Aviv",
-    city: "Tel Aviv",
-    price: 3,
-    description:
-      "Chef Sharon Cohen's long-running seafood and bar spot on Ben Yehuda. Buzzing atmosphere, excellent raw bar, a local favorite for years.",
-    mustTry: "Sashimi and crudo, grilled fish, the 'Shila' prawns",
-    address: "Ben Yehuda St 182, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    tags: ["team-dinner", "late-night"],
-  },
-  {
-    name: "OCD",
-    cuisine: "Tasting Menu",
-    area: "South Tel Aviv",
-    city: "Tel Aviv",
-    price: 4,
-    description:
-      "An intimate counter-seating chef's table with a single multi-course menu. For a once-in-a-trip experience — seats are very limited and usually book out weeks ahead.",
-    mustTry: "There's only one menu — just go",
-    address: "",
-    instagram: "",
-    reservation: "https://www.ocdtlv.com/ocd-en",
-    tags: ["special-occasion"],
-  },
-  {
-    name: "HaBasta",
-    cuisine: "Market Bistro",
-    area: "Carmel Market",
-    city: "Tel Aviv",
-    price: 3,
-    description:
-      "Tiny wine bar and kitchen on the edge of the Carmel Market. Menu changes daily based on what the market has, with a serious natural-wine list.",
-    mustTry: "Whatever is on today's board, plus a glass of wine",
-    address: "HaShomer St 4, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    tags: ["vegetarian-friendly"],
-  },
-  {
-    name: "Mashya",
-    cuisine: "Modern Moroccan / Israeli",
-    area: "Beach / Mendeli",
-    city: "Tel Aviv",
-    price: 3,
-    description:
-      "Chef Yossi Shitrit's modern take on Moroccan-Jewish cooking, a block from the beach. Great for a relaxed but impressive dinner.",
-    mustTry: "Freekeh, lamb dishes, the bread",
-    address: "Mendeli St 5, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    tags: ["team-dinner"],
-  },
-  {
-    name: "Tzfon Abraxas",
-    cuisine: "Israeli / Mediterranean",
-    area: "Lilienblum",
-    city: "Tel Aviv",
-    price: 2,
-    description:
-      "Another Eyal Shani classic — bar seating facing the open kitchen, very loud music, very good food. Fun for small groups.",
-    mustTry: "Whole roasted cauliflower, tomato salad, 'Mama's' focaccia",
-    address: "Lilienblum St 40, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    tags: ["late-night", "vegetarian-friendly"],
-  },
-  {
-    name: "HaKosem",
-    cuisine: "Falafel & Shawarma",
-    area: "City Center",
-    city: "Tel Aviv",
-    price: 1,
-    description:
-      "One of the city's most loved falafel stands. Expect a line at lunch and a free falafel ball handed to you while you wait.",
-    mustTry: "Falafel in pita, sabich, shawarma",
-    address: "Shlomo HaMelech St 1, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    walkIn: true,
-    tags: ["quick-lunch", "vegetarian-friendly"],
-  },
-  {
-    name: "Benedict",
-    cuisine: "Breakfast",
-    area: "Rothschild",
-    city: "Tel Aviv",
-    price: 2,
-    description:
-      "All-day breakfast spot — eggs every way imaginable. A good introduction to the huge Israeli breakfast.",
-    mustTry: "Israeli breakfast, shakshuka, eggs Benedict",
-    address: "Rothschild Blvd 29, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    tags: ["breakfast", "vegetarian-friendly"],
-  },
-  {
-    name: "Abu Hassan",
-    cuisine: "Hummus",
-    area: "Jaffa",
-    city: "Jaffa",
-    price: 1,
-    description:
-      "A legendary Jaffa hummus joint. No menu, shared tables, fast service. Go before lunch — it closes when the hummus runs out.",
-    mustTry: "Msabaha, hummus with ful",
-    address: "HaDolfin St 1, Jaffa",
-    instagram: "",
-    reservation: "",
-    walkIn: true,
-    tags: ["quick-lunch", "vegetarian-friendly"],
-  },
-  {
-    name: "Dr. Shakshuka",
-    cuisine: "North African",
-    area: "Jaffa",
-    city: "Jaffa",
-    price: 1,
-    description:
-      "Casual Libyan-Jewish spot in old Jaffa, famous for shakshuka served bubbling in the pan. Combine with a walk through the Jaffa flea market.",
-    mustTry: "Shakshuka, couscous",
-    address: "Beit Eshel St 3, Jaffa",
-    instagram: "",
-    reservation: "",
-    walkIn: true,
-    tags: ["vegetarian-friendly"],
-  },
-  {
-    name: "Manta Ray",
-    cuisine: "Seafood",
-    area: "Alma Beach",
-    city: "Tel Aviv",
-    price: 3,
-    description:
-      "Right on the sand between Tel Aviv and Jaffa with a view of the sea. Ideal for a sunset dinner or a long weekend brunch.",
-    mustTry: "Mezze selection, grilled fish",
-    address: "Alma Beach, Tel Aviv",
-    instagram: "",
-    reservation: "",
-    tags: ["view", "team-dinner", "breakfast"],
-  },
-];
+window.GOODFOOD = {
+  restaurants: [
+    {
+      name: "Port Said",
+      hebrew: "פורט סעיד",
+      kind: "Israeli · Bar food",
+      area: "Center",
+      price: 2,
+      why: "Eyal Shani's loud, joyful bar-restaurant next to the Great Synagogue. Vinyl on the speakers, a crowd spilling onto the street, sharing plates that change daily. If you only have one night, this is the one.",
+      order: "Roasted cauliflower, beef sinia, whatever's on the board",
+      address: "Har Sinai St 5, Tel Aviv",
+      instagram: "",
+      reserve: "",
+      walkIn: true,
+    },
+    {
+      name: "Taizu",
+      hebrew: "טאיזו",
+      kind: "Pan-Asian",
+      area: "Menachem Begin",
+      price: 4,
+      why: "A dramatic, temple-like room serving Southeast Asian street food, refined. Our go-to for a big night out with the team. Book two to three weeks ahead.",
+      order: "The tasting menu, and cocktails at the bar first",
+      address: "Menachem Begin Rd 23, Tel Aviv",
+      instagram: "",
+      reserve: "",
+    },
+    {
+      name: "Shila",
+      hebrew: "שילה",
+      kind: "Seafood",
+      area: "North",
+      price: 3,
+      why: "Sharon Cohen's seafood bar on Ben Yehuda has been packed for years for a reason. Excellent raw bar, buzzing room, great for groups of four to six.",
+      order: "Crudo, the shrimp, fish of the day",
+      address: "Ben Yehuda St 182, Tel Aviv",
+      instagram: "",
+      reserve: "",
+    },
+    {
+      name: "Claro",
+      hebrew: "קלארו",
+      kind: "Mediterranean",
+      area: "Sarona",
+      price: 3,
+      why: "Market-driven cooking in a restored 19th-century stone building in Sarona. A short walk from the Tel Aviv office, which makes it the easy answer for a team dinner.",
+      order: "Anything from the taboon oven",
+      address: "HaArba'a St 23, Tel Aviv",
+      instagram: "",
+      reserve: "",
+    },
+  ],
+  street: [
+    {
+      name: "Miznon",
+      hebrew: "מזנון",
+      kind: "Pita",
+      area: "Center",
+      price: 1,
+      why: "The original branch of the pita bar now in New York and Paris. Order at the counter, find a stool, eat with your hands.",
+      order: "Whole cauliflower, minute-steak pita",
+      address: "Ibn Gabirol St 23, Tel Aviv",
+      instagram: "",
+      walkIn: true,
+    },
+    {
+      name: "HaKosem",
+      hebrew: "הקוסם",
+      kind: "Falafel",
+      area: "Center",
+      price: 1,
+      why: "Some of the best falafel in the city. There's a line at lunch, and they hand you a hot falafel ball while you wait.",
+      order: "Falafel in pita, or the sabich",
+      address: "Shlomo HaMelech St 1, Tel Aviv",
+      instagram: "",
+      walkIn: true,
+    },
+    {
+      name: "Abu Hassan",
+      hebrew: "אבו חסן",
+      kind: "Hummus",
+      area: "Jaffa",
+      price: 1,
+      why: "The legendary Jaffa hummus joint. No menu, shared tables, ten minutes start to finish. Go before 1pm; it closes when the hummus runs out.",
+      order: "Msabaha",
+      address: "HaDolfin St 1, Jaffa",
+      instagram: "",
+      walkIn: true,
+    },
+  ],
+  bars: [
+    {
+      name: "Imperial",
+      hebrew: "אימפריאל",
+      kind: "Cocktail bar",
+      area: "Beachfront",
+      price: 3,
+      why: "A small colonial-style cocktail bar in an old hotel by the beach, regularly on the world's best-bars lists. Seats fill fast after 9pm.",
+      order: "Ask the bartender for something with arak",
+      address: "HaYarkon St 66, Tel Aviv",
+      instagram: "",
+      reserve: "",
+    },
+    {
+      name: "Bellboy",
+      hebrew: "בלבוי",
+      kind: "Cocktail bar",
+      area: "Center",
+      price: 3,
+      why: "Over-the-top theatrical cocktails in a dark velvet room. Fun to bring visitors who think they've seen every cocktail.",
+      order: "Whatever arrives with smoke",
+      address: "Berdichevsky St 14, Tel Aviv",
+      instagram: "",
+      reserve: "",
+    },
+  ],
+  sweets: [
+    {
+      name: "Anita",
+      hebrew: "אניטה",
+      kind: "Gelato",
+      area: "Neve Tzedek",
+      price: 1,
+      why: "The city's favorite gelato, with a dozen-long line on summer nights. Combine it with a walk through Neve Tzedek's little streets.",
+      order: "Pistachio, and one wild seasonal flavor",
+      address: "Shabazi St 42, Tel Aviv",
+      instagram: "",
+      walkIn: true,
+    },
+    {
+      name: "Abulafia",
+      hebrew: "אבולעפיה",
+      kind: "Bakery",
+      area: "Jaffa",
+      price: 1,
+      why: "A Jaffa institution baking around the clock since 1879. Grab something warm on your way to the port.",
+      order: "Sesame ka'ak and a sweet pastry",
+      address: "Yefet St 7, Jaffa",
+      instagram: "",
+      walkIn: true,
+    },
+  ],
+};

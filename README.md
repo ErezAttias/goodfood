@@ -1,26 +1,20 @@
-# GoodFood — Where to eat in Tel Aviv
+# GoodFood — Eat Tel Aviv
 
-A simple, mobile-friendly English website with restaurant recommendations for
-colleagues visiting the JFrog offices in Israel. Each place shows its cuisine,
-price level, neighborhood, a short description, what to order, and buttons for
-**Reserve**, **Instagram** and **Map**. Visitors can search and filter by cuisine,
-area, budget and occasion (near the office, team dinner, quick lunch, …).
+A short, mobile-first English guide to the best places to eat and drink in Tel Aviv,
+for colleagues visiting the JFrog offices in Israel. Four lists: **Restaurants**,
+**Street food**, **Bars** and **Dessert**. Each place shows its logo, a food photo and
+an atmosphere photo, its Hebrew name (to show a taxi driver), why we picked it, what
+to order, and buttons for **Book a table**, **Instagram** and **Directions**.
 
-There's no build step and no server: it's just `index.html` + `restaurants.js`.
+No build step and no server: `index.html` + `restaurants.js` + `images/`.
 
 ## Editing the list
 
-All content lives in [`restaurants.js`](restaurants.js). Add an object to the
-array, commit, and the site updates. The field list is documented at the top of
-the file.
+All content lives in [`restaurants.js`](restaurants.js); fields are documented at the
+top of the file. Photos go in `images/<place>/` as `logo`, `dish` and `vibe` files and
+are referenced from the place's entry. A place without photos shows a placeholder.
 
-For `instagram`, put the handle without `@`. For `reservation`, paste the
-full booking link (Ontopo, Tabit, or the restaurant's own site). If either is
-left empty, the button falls back to a Google search for that restaurant, so it
-still works — but real links are better.
-
-> The seed list is a starting point. Before sending the site out, check each
-> place is still open and fill in the real Instagram and booking links.
+Each tab can be linked directly: `#restaurants`, `#street`, `#bars`, `#sweets`.
 
 ## Publishing (GitHub Pages)
 
