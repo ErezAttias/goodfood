@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=Rubik:wght@500&display=swap">
 <style>
   /* Layout: a pocket guide. Big type opener, four list tabs, one tall editorial entry per place:
-     logo + name (with Hebrew for the taxi driver), two photos (food / room), why, order, three actions. */
+     full-width photo slider (inside, food, outside), big logo + name (with Hebrew for the taxi driver), why, order, three actions. */
   :root {
     --paper: #f3f2ee;        /* White City plaster */
     --card: #ffffff;
@@ -98,31 +98,50 @@
   /* Entry */
   .entries { display: grid; gap: 20px; padding-block: 20px 48px; }
   .entry { background: var(--card); border-radius: 22px; overflow: hidden; }
-  .photos { display: grid; grid-template-columns: 1.25fr 1fr; gap: 3px; aspect-ratio: 16 / 10; max-width: 100%; }
-  .ph { position: relative; height: 100%; min-width: 0; overflow: hidden; background: var(--ph-a); margin: 0; }
-  .ph + .ph { background: var(--ph-b); }
-  .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .ph figcaption {
-    position: absolute; left: 10px; top: 10px;
-    font: 600 11px/1 var(--body); letter-spacing: .1em; text-transform: uppercase;
-    background: var(--card); color: var(--ink);
-    padding: 6px 8px; border-radius: 6px;
+  /* Photo slider: one full-width photo at a time, swipe on phones, arrows on desktop */
+  .slider { position: relative; background: var(--ph-a); }
+  .track {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    aspect-ratio: 4 / 3; max-width: 100%; overscroll-behavior-x: contain;
   }
-  .ph .empty {
+  @media (min-width: 620px) { .track { aspect-ratio: 16 / 10; } }
+  .track::-webkit-scrollbar { display: none; }
+  .slide { position: relative; flex: 0 0 100%; scroll-snap-align: start; margin: 0; overflow: hidden; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .slide figcaption {
+    position: absolute; left: 12px; top: 12px;
+    font: 600 11px/1 var(--body); letter-spacing: .1em; text-transform: uppercase;
+    background: var(--card); color: var(--ink); padding: 6px 8px; border-radius: 6px;
+  }
+  .dots {
+    position: absolute; right: 12px; bottom: 12px; display: flex; gap: 6px;
+    background: rgba(0, 0, 0, .45); padding: 7px 9px; border-radius: 999px;
+  }
+  .dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .5); cursor: pointer; }
+  .dots button[aria-current="true"] { background: #fff; width: 18px; border-radius: 4px; }
+  .nav {
+    position: absolute; top: 50%; translate: 0 -50%; width: 40px; height: 40px; border-radius: 50%;
+    border: 0; background: var(--card); color: var(--ink); cursor: pointer; display: none;
+    place-items: center; box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+  }
+  .nav svg { width: 18px; height: 18px; }
+  .nav.prev { left: 12px; } .nav.next { right: 12px; }
+  @media (hover: hover) { .slider:hover .nav { display: grid; } .nav[disabled] { opacity: 0; pointer-events: none; } }
+  .slide .empty {
     position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px;
     color: var(--ink-2); font: 500 13px/1.3 var(--body);
   }
-  .ph .empty b { display: block; font: 700 clamp(20px, 5.5vw, 32px)/1 var(--display); letter-spacing: -.03em; color: var(--c); margin-bottom: 6px; }
+  .slide .empty b { display: block; font: 700 32px/1 var(--display); letter-spacing: -.03em; color: var(--c); margin-bottom: 6px; }
 
   .body { padding: 0 20px 20px; display: grid; gap: 14px; }
-  .id { display: grid; gap: 12px; justify-items: start; margin-top: -36px; position: relative; }
+  .id { display: grid; gap: 12px; justify-items: start; margin-top: -52px; position: relative; z-index: 1; }
   .logo {
-    flex: 0 0 auto; width: 68px; height: 68px; border-radius: 50%;
-    background: var(--card); border: 3px solid var(--card); box-shadow: 0 0 0 1px var(--rule);
+    flex: 0 0 auto; width: 104px; height: 104px; border-radius: 50%;
+    background: var(--card); border: 4px solid var(--card); box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
     display: grid; place-items: center; overflow: hidden;
   }
   .logo img { width: 100%; height: 100%; object-fit: cover; }
-  .logo .mono { font: 800 22px/1 var(--display); color: var(--c); letter-spacing: -.04em; }
+  .logo .mono { font: 800 34px/1 var(--display); color: var(--c); letter-spacing: -.04em; }
   .names { min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
   .names h3 { font: 700 28px/1 var(--display); letter-spacing: -.03em; margin: 0; text-wrap: balance; }
   .names .he { font: 500 16px/1 var(--hebrew); color: var(--ink-2); }
@@ -213,11 +232,57 @@
   const reserve = (p) => p.reserve || `https://www.google.com/search?q=${enc(`${p.name} ${city(p)} reservation ontopo OR tabit`)}`;
   const initials = (n) => n.length <= 3 ? n : n.replace(/^(The|Dr\.?)\s+/i, "").split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
 
-  function photo(src, label, p, fallback) {
-    const inner = src
-      ? `<img src="${esc(src)}" alt="${esc(label === "The food" ? `Food at ${p.name}` : `Inside ${p.name}`)}" loading="lazy">`
-      : `<div class="empty"><div><b>${esc(fallback)}</b>Photo coming soon</div></div>`;
-    return `<figure class="ph">${inner}<figcaption>${label}</figcaption></figure>`;
+  const LABEL = { interior: "Inside", dish: "The food", vibe: "The place", outside: "Outside" };
+  const ARROW = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="${d === "prev" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}"/></svg>`;
+
+  // photos: [{ src, kind }] in display order. Older entries with interior/dish/vibe fields still work.
+  function photosOf(p) {
+    if (Array.isArray(p.photos) && p.photos.length) return p.photos;
+    return ["interior", "dish", "vibe"].filter((k) => p[k]).map((k) => ({ src: p[k], kind: k }));
+  }
+
+  function slider(p) {
+    const photos = photosOf(p);
+    if (!photos.length) {
+      return `<div class="slider"><div class="track"><figure class="slide"><div class="empty"><div><b>${esc(p.kind.split("·")[0].trim())}</b>Photos coming soon</div></div></figure></div></div>`;
+    }
+    const slides = photos.map((ph, i) => {
+      const label = LABEL[ph.kind] || "";
+      return `<figure class="slide"><img src="${esc(ph.src)}" alt="${esc(`${label || "Photo"} at ${p.name}`)}" ${i ? 'loading="lazy"' : ""}>${label ? `<figcaption>${label}</figcaption>` : ""}</figure>`;
+    }).join("");
+    const many = photos.length > 1;
+    return `
+      <div class="slider" aria-roledescription="carousel" aria-label="Photos of ${esc(p.name)}">
+        <div class="track" tabindex="0">${slides}</div>
+        ${many ? `
+          <button class="nav prev" aria-label="Previous photo" disabled>${ARROW("prev")}</button>
+          <button class="nav next" aria-label="Next photo">${ARROW("next")}</button>
+          <div class="dots">${photos.map((_, i) => `<button aria-label="Photo ${i + 1}" ${i ? "" : 'aria-current="true"'}></button>`).join("")}</div>` : ""}
+      </div>`;
+  }
+
+  function wireSliders(root) {
+    root.querySelectorAll(".slider").forEach((s) => {
+      const track = s.querySelector(".track");
+      const dots = [...s.querySelectorAll(".dots button")];
+      if (!dots.length) return;
+      const prev = s.querySelector(".prev"), next = s.querySelector(".next");
+      const idx = () => Math.round(track.scrollLeft / track.clientWidth);
+      const go = (i) => track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" });
+      const sync = () => {
+        const i = idx();
+        dots.forEach((d, j) => d.setAttribute("aria-current", i === j));
+        prev.disabled = i === 0; next.disabled = i === dots.length - 1;
+      };
+      track.addEventListener("scroll", () => requestAnimationFrame(sync), { passive: true });
+      dots.forEach((d, j) => d.addEventListener("click", () => go(j)));
+      prev.addEventListener("click", () => go(idx() - 1));
+      next.addEventListener("click", () => go(idx() + 1));
+      track.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") { e.preventDefault(); go(idx() + 1); }
+        if (e.key === "ArrowLeft") { e.preventDefault(); go(idx() - 1); }
+      });
+    });
   }
 
   function entry(p, list) {
@@ -227,7 +292,7 @@
       : `<a class="act primary" href="${esc(reserve(p))}" target="_blank" rel="noopener">${ICON.cal}Book a table</a>`;
     return `
       <article class="entry" style="--c: var(${list.c})">
-        <div class="photos">${photo(p.dish, "The food", p, p.kind.split("·")[0].trim())}${photo(p.vibe, "The room", p, p.area)}</div>
+        ${slider(p)}
         <div class="body">
           <div class="id">
             <div class="logo">${p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.name)} logo">` : `<span class="mono" aria-hidden="true">${esc(initials(p.name))}</span>`}</div>
@@ -263,6 +328,7 @@
     listEl.innerHTML = `
       <div class="list-head"><h2>${list.label}</h2><p>${list.blurb}</p></div>
       <div class="entries">${(DATA[list.id] || []).map((p) => entry(p, list)).join("")}</div>`;
+    wireSliders(listEl);
   }
   tabsEl.addEventListener("click", (e) => {
     const t = e.target.closest(".tab"); if (!t) return;
