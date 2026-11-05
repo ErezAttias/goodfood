@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GoodFood Tel Aviv</title>
+  <meta name="description" content="Where to eat in Tel Aviv — restaurant picks for colleagues visiting the JFrog Israel offices." />
+  <meta property="og:title" content="GoodFood Tel Aviv" />
+  <meta property="og:description" content="Where to eat in Tel Aviv — hand-picked by your Israeli colleagues." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥙</text></svg>" />
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --surface: #ffffff;
+      --text: #1f1d1a;
+      --muted: #6b655c;
+      --line: #e8e2d8;
+      --accent: #2f7d4f;
+      --accent-soft: #e4f1e8;
+      --chip: #f1ece4;
+      --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.05);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #161513;
+        --surface: #1f1e1b;
+        --text: #f1ede6;
+        --muted: #a39d93;
+        --line: #33312c;
+        --accent: #6cc28f;
+        --accent-soft: #1f3a2a;
+        --chip: #2a2824;
+        --shadow: none;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+    header { padding: 40px 0 16px; }
+    h1 { font-size: clamp(28px, 5vw, 40px); margin: 0 0 6px; letter-spacing: -.02em; }
+    .lead { color: var(--muted); margin: 0; max-width: 640px; }
+
+    details.tips {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+      padding: 14px 18px; margin: 20px 0; box-shadow: var(--shadow);
+    }
+    details.tips summary { cursor: pointer; font-weight: 600; }
+    details.tips ul { margin: 12px 0 4px; padding-left: 20px; }
+    details.tips li { margin-bottom: 6px; }
+
+    .controls {
+      position: sticky; top: 0; z-index: 5; background: var(--bg);
+      padding: 12px 0; border-bottom: 1px solid var(--line);
+    }
+    @media (max-width: 600px) { .controls { position: static; } }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .row + .row { margin-top: 10px; }
+    input[type=search], select {
+      font: inherit; color: var(--text); background: var(--surface);
+      border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px;
+    }
+    input[type=search] { flex: 1 1 240px; min-width: 0; }
+    select { flex: 0 1 auto; }
+    .chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip {
+      font: inherit; font-size: 14px; white-space: nowrap; cursor: pointer;
+      border: 1px solid transparent; background: var(--chip); color: var(--text);
+      border-radius: 999px; padding: 5px 12px;
+    }
+    .chip[aria-pressed=true] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .count { color: var(--muted); font-size: 14px; margin: 14px 0 6px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; padding-bottom: 40px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+      padding: 18px; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--shadow);
+    }
+    .card h2 { font-size: 20px; margin: 0; }
+    .meta { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 10px; }
+    .meta .price { color: var(--text); font-weight: 600; letter-spacing: .05em; }
+    .meta .price span { opacity: .25; }
+    .cuisine { color: var(--accent); font-weight: 600; font-size: 14px; }
+    .desc { margin: 0; }
+    .must { margin: 0; font-size: 14px; }
+    .must b { font-weight: 600; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tag { font-size: 12px; background: var(--chip); color: var(--muted); border-radius: 6px; padding: 2px 8px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
+    .btn {
+      flex: 1 1 auto; text-align: center; text-decoration: none; font-size: 14px; font-weight: 600;
+      border-radius: 10px; padding: 9px 10px; border: 1px solid var(--line); color: var(--text); background: var(--bg);
+    }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    @media (prefers-color-scheme: dark) { .btn.primary { color: #10251a; } }
+    .btn.disabled { opacity: .6; pointer-events: none; }
+    .empty { color: var(--muted); padding: 40px 0; text-align: center; grid-column: 1 / -1; }
+    footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding: 20px 0 40px; }
+    footer a { color: inherit; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Where to eat in Tel Aviv 🥙</h1>
+      <p class="lead">Welcome to Israel! These are the places your Israeli colleagues actually go to. Filter by cuisine, budget or occasion, then tap through to Instagram, Maps or booking.</p>
+    </header>
+
+    <details class="tips">
+      <summary>Good to know before you go</summary>
+      <ul>
+        <li><b>Book ahead.</b> Popular places fill up, especially Thursday and Friday nights. Most restaurants use <b>Ontopo</b> or <b>Tabit</b> for online booking — no Hebrew needed.</li>
+        <li><b>The weekend is Friday–Saturday.</b> Shabbat runs Friday sunset to Saturday night. Many places stay open, but kosher restaurants close, and some close Friday afternoon.</li>
+        <li><b>Tipping:</b> 12–15% is standard at sit-down restaurants and is usually <i>not</i> included in the bill. Tell the server the total you want to charge, including the tip.</li>
+        <li><b>Cards</b> are accepted almost everywhere; Apple Pay / Google Pay work widely.</li>
+        <li><b>Dinner runs late.</b> 8:30–9:00pm is a normal dinner time. Lunch deals ("business lunch") are common on weekdays.</li>
+        <li><b>Getting around:</b> use <b>Gett</b> or <b>Yango</b> for taxis. For delivery to your hotel, use <b>Wolt</b>.</li>
+        <li><b>Tap water</b> is safe to drink.</li>
+      </ul>
+    </details>
+
+    <div class="controls">
+      <div class="row">
+        <input id="q" type="search" placeholder="Search name, dish, cuisine…" aria-label="Search" />
+        <select id="area" aria-label="Area"><option value="">All areas</option></select>
+        <select id="price" aria-label="Budget">
+          <option value="">Any budget</option>
+          <option value="1">$ — cheap eats</option>
+          <option value="2">up to $$</option>
+          <option value="3">up to $$$</option>
+          <option value="4">up to $$$$</option>
+        </select>
+      </div>
+      <div class="row"><div class="chips" id="cuisines" role="group" aria-label="Cuisine"></div></div>
+      <div class="row"><div class="chips" id="tags" role="group" aria-label="Occasion"></div></div>
+    </div>
+
+    <p class="count" id="count"></p>
+    <main class="grid" id="grid"></main>
+
+    <footer>
+      Missing a favorite, or found a broken link? Let us know and we'll add it.
+      Info changes — always double-check opening hours before you go.
+    </footer>
+  </div>
+
+  <script src="restaurants.js"></script>
+  <script>
+    const TAG_LABELS = {
+      "near-office": "📍 Near the office",
+      "team-dinner": "👥 Team dinner",
+      "quick-lunch": "⚡ Quick lunch",
+      "breakfast": "🍳 Breakfast",
+      "special-occasion": "✨ Special occasion",
+      "late-night": "🌙 Late night",
+      "view": "🌅 Sea view",
+      "vegetarian-friendly": "🥗 Vegetarian-friendly",
+      "kosher": "✡️ Kosher",
+      "open-shabbat": "🕯️ Open on Shabbat",
+    };
+
+    const data = (window.RESTAURANTS || []).slice().sort((a, b) => a.name.localeCompare(b.name));
+    const $ = (id) => document.getElementById(id);
+    const state = { q: "", area: "", price: "", cuisine: "", tag: "" };
+
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const enc = encodeURIComponent;
+
+    const mapsUrl = (r) => "https://www.google.com/maps/search/?api=1&query=" +
+      enc(r.address ? `${r.name}, ${r.address}` : `${r.name} ${r.city}`);
+    const instaUrl = (r) => r.instagram
+      ? `https://www.instagram.com/${enc(r.instagram.replace(/^@/, ""))}/`
+      : `https://www.google.com/search?q=${enc(`${r.name} ${r.city} instagram`)}`;
+    const reserveUrl = (r) => r.reservation ||
+      `https://www.google.com/search?q=${enc(`${r.name} ${r.city} reservation ontopo OR tabit`)}`;
+
+    // Build filter controls from the data
+    const uniq = (arr) => [...new Set(arr)].sort((a, b) => a.localeCompare(b));
+    uniq(data.map((r) => r.area)).forEach((a) => {
+      $("area").insertAdjacentHTML("beforeend", `<option value="${esc(a)}">${esc(a)}</option>`);
+    });
+
+    function chipGroup(el, key, items) {
+      el.innerHTML = [["", "All"], ...items]
+        .map(([v, label]) => `<button class="chip" data-v="${esc(v)}" aria-pressed="${state[key] === v}">${esc(label)}</button>`)
+        .join("");
+      el.addEventListener("click", (e) => {
+        const b = e.target.closest(".chip");
+        if (!b) return;
+        state[key] = state[key] === b.dataset.v ? "" : b.dataset.v;
+        el.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", c.dataset.v === state[key]));
+        render();
+      });
+    }
+    chipGroup($("cuisines"), "cuisine", uniq(data.map((r) => r.cuisine)).map((c) => [c, c]));
+    const usedTags = Object.keys(TAG_LABELS).filter((t) => data.some((r) => (r.tags || []).includes(t)));
+    chipGroup($("tags"), "tag", usedTags.map((t) => [t, TAG_LABELS[t]]));
+
+    function matches(r) {
+      if (state.area && r.area !== state.area) return false;
+      if (state.price && (r.price || 0) > Number(state.price)) return false;
+      if (state.cuisine && r.cuisine !== state.cuisine) return false;
+      if (state.tag && !(r.tags || []).includes(state.tag)) return false;
+      if (state.q) {
+        const hay = [r.name, r.cuisine, r.area, r.city, r.description, r.mustTry, ...(r.tags || []).map((t) => TAG_LABELS[t] || t)]
+          .join(" ").toLowerCase();
+        if (!state.q.toLowerCase().split(/\s+/).every((w) => hay.includes(w))) return false;
+      }
+      return true;
+    }
+
+    function card(r) {
+      const p = Math.max(1, Math.min(4, r.price || 1));
+      const price = "$".repeat(p) + `<span>${"$".repeat(4 - p)}</span>`;
+      const reserve = r.walkIn && !r.reservation
+        ? `<span class="btn disabled" title="This place doesn't take reservations">Walk-in only</span>`
+        : `<a class="btn primary" href="${esc(reserveUrl(r))}" target="_blank" rel="noopener">Reserve</a>`;
+      return `
+        <article class="card">
+          <div class="cuisine">${esc(r.cuisine)}</div>
+          <h2>${esc(r.name)}</h2>
+          <div class="meta"><span class="price" aria-label="Price level ${p} of 4">${price}</span><span>${esc(r.area)}${r.area !== r.city ? ", " + esc(r.city) : ""}</span></div>
+          <p class="desc">${esc(r.description)}</p>
+          ${r.mustTry ? `<p class="must"><b>Must try:</b> ${esc(r.mustTry)}</p>` : ""}
+          ${(r.tags || []).length ? `<div class="tags">${r.tags.map((t) => `<span class="tag">${esc(TAG_LABELS[t] || t)}</span>`).join("")}</div>` : ""}
+          <div class="actions">
+            ${reserve}
+            <a class="btn" href="${esc(instaUrl(r))}" target="_blank" rel="noopener">Instagram</a>
+            <a class="btn" href="${esc(mapsUrl(r))}" target="_blank" rel="noopener">Map</a>
+          </div>
+        </article>`;
+    }
+
+    function render() {
+      const list = data.filter(matches);
+      $("grid").innerHTML = list.length
+        ? list.map(card).join("")
+        : `<div class="empty">No matches — try clearing a filter.</div>`;
+      $("count").textContent = `${list.length} of ${data.length} places`;
+    }
+
+    $("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
+    $("area").addEventListener("change", (e) => { state.area = e.target.value; render(); });
+    $("price").addEventListener("change", (e) => { state.price = e.target.value; render(); });
+    render();
+  </script>
+</body>
+</html>
