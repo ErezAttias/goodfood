@@ -50,3 +50,20 @@ Save to `images/<slug>/{logo,dish,vibe}.jpg` and reference them in `restaurants.
 - Jango: https://timeout.co.il/גאנגו-ביקורת/
 - Cassata: https://www.ynetnews.com/culture/article/rjjhok00zxx
 - Otello: https://www.timeout.com/israel/restaurants/otello-gelato
+
+# Suggestions not yet picked (November 2026)
+From search-result snippets only; confirm each is open before adding.
+
+**Restaurants:** OCD (La Liste 2026), Taizu (Ontopo top 5, Mako 2025), Mashya (La Liste 2026),
+Café Europa (Ontopo top 5), Chacoli (Ontopo top 5; weakest evidence). Alternates: Pastel, Alena at The Norman.
+**Street food:** Sabich Frishman (Frishman 42), Sabich Tchernichovsky (Allenby 45),
+Shlomo & Doron hummus (Yishkon 29; possible move to Malan 16), Miznon (Ibn Gabirol 23).
+**Dessert:** Anita (Shabazi), Gelalucci (Kikar Masaryk), Padre (Dizengoff Square), Mystic (lowest confidence).
+Alternates: Arte (Nahalat Binyamin 11), Bouza.
+**Pizza:** La Tigre (Florentin + Basel; Mako readers' best pizza 2025), HaPizza (Bograshov 51), Pizza Eliezer (Ben Yehuda 126).
+**Burgers:** M25 (Carmel Market; #2 Time Out 2026), Vitrina (Ibn Gabirol 36), America Burgers (no 2026 confirmation).
+Alternates: Stephanie Smash Burger, Wolfnights.
+
+Sources: https://www.ynetnews.com/food/article/bk0kswez11x , https://www.mako.co.il/news-money/consumer/Article-b35412aa74ffa91027.htm ,
+https://timeout.co.il/הגלידריות-הכי-טובות/ , https://www.mako.co.il/news-money/consumer/Article-61455d1b0c10a91027.htm ,
+https://timeout.co.il/ampm-m25/ , https://www.timeout.com/israel/restaurants/vitrina-ibn-gvirol
