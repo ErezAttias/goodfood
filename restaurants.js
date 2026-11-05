@@ -14,7 +14,8 @@
  *   instagram  Handle without @
  *   reserve    Full booking URL (Ontopo / Tabit / own site)
  *   walkIn     true if they don't take bookings
- *   logo / dish / vibe   Image paths, e.g. "images/shila/dish.jpg"
+ *   logo       Path to a square logo, e.g. "images/shila/logo.jpg"
+ *   photos     Slider photos in order: [{ src, kind }] where kind is "interior", "dish" or "outside"
  *
  * Missing photos/logo show a placeholder. Missing instagram/reserve fall back to a search.
  * Research notes and sources for each place: research/places.md
@@ -23,10 +24,12 @@ window.GOODFOOD = {
   restaurants: [
     {
       name: "Shila",
+      photos: [
+        { src: "images/shila/dish-1.jpg", kind: "dish" },
+        { src: "images/shila/dish-2.jpg", kind: "dish" },
+        { src: "images/shila/dish-3.jpg", kind: "dish" },
+      ],
       logo: "images/shila/logo.jpg",
-      dish: "images/shila/dish.jpg",
-      dish2: "images/shila/dish-2.jpg",
-      vibe: "images/shila/vibe.jpg",
       hebrew: "שילה",
       kind: "Seafood",
       area: "Center",
@@ -39,9 +42,11 @@ window.GOODFOOD = {
     },
     {
       name: "HaBasta",
-      dish: "images/habasta/dish.jpg",
-      dish2: "images/habasta/dish-2.jpg",
-      vibe: "images/habasta/vibe.jpg",
+      photos: [
+        { src: "images/habasta/dish-1.jpg", kind: "dish" },
+        { src: "images/habasta/dish-2.jpg", kind: "dish" },
+        { src: "images/habasta/dish-3.jpg", kind: "dish" },
+      ],
       hebrew: "הבסטה",
       kind: "Market bistro · Wine bar",
       area: "Carmel Market",
@@ -54,10 +59,11 @@ window.GOODFOOD = {
     },
     {
       name: "Bar 51",
+      photos: [
+        { src: "images/bar51/interior-1.jpg", kind: "interior" },
+        { src: "images/bar51/dish-1.jpg", kind: "dish" },
+      ],
       logo: "images/bar51/logo.jpg",
-      dish: "images/bar51/dish.jpg",
-      dish2: "images/bar51/dish-2.jpg",
-      vibe: "images/bar51/vibe.jpg",
       hebrew: "בר 51",
       kind: "Wine bar · Small plates",
       area: "Seafront",
@@ -70,10 +76,13 @@ window.GOODFOOD = {
     },
     {
       name: "Sun Young",
+      photos: [
+        { src: "images/sun-young/interior-1.jpg", kind: "interior" },
+        { src: "images/sun-young/interior-2.jpg", kind: "interior" },
+        { src: "images/sun-young/dish-1.jpg", kind: "dish" },
+        { src: "images/sun-young/dish-2.jpg", kind: "dish" },
+      ],
       logo: "images/sun-young/logo.jpg",
-      dish: "images/sun-young/dish.jpg",
-      dish2: "images/sun-young/dish-2.jpg",
-      vibe: "images/sun-young/vibe.jpg",
       hebrew: "סאן יאנג",
       kind: "Asian",
       area: "Rothschild",
@@ -86,10 +95,13 @@ window.GOODFOOD = {
     },
     {
       name: "Café Popular",
+      photos: [
+        { src: "images/cafe-popular/interior-1.jpg", kind: "interior" },
+        { src: "images/cafe-popular/interior-2.jpg", kind: "interior" },
+        { src: "images/cafe-popular/dish-1.jpg", kind: "dish" },
+        { src: "images/cafe-popular/dish-2.jpg", kind: "dish" },
+      ],
       logo: "images/cafe-popular/logo.jpg",
-      dish: "images/cafe-popular/dish.jpg",
-      dish2: "images/cafe-popular/dish-2.jpg",
-      vibe: "images/cafe-popular/vibe.jpg",
       hebrew: "קפה פופולר",
       kind: "Downstairs bar · Bistro",
       area: "North Dizengoff",
@@ -102,10 +114,13 @@ window.GOODFOOD = {
     },
     {
       name: "Thai House",
+      photos: [
+        { src: "images/thai-house/interior-1.jpg", kind: "interior" },
+        { src: "images/thai-house/interior-2.jpg", kind: "interior" },
+        { src: "images/thai-house/dish-1.jpg", kind: "dish" },
+        { src: "images/thai-house/dish-2.jpg", kind: "dish" },
+      ],
       logo: "images/thai-house/logo.jpg",
-      dish: "images/thai-house/dish.jpg",
-      dish2: "images/thai-house/dish-2.jpg",
-      vibe: "images/thai-house/vibe.jpg",
       hebrew: "בית תאילנדי",
       kind: "Thai",
       area: "Center",
@@ -120,9 +135,9 @@ window.GOODFOOD = {
   street: [
     {
       name: "Jasmino",
-      dish: "images/jasmino/dish.jpg",
-      dish2: "images/jasmino/dish-2.jpg",
-      vibe: "images/jasmino/vibe.jpg",
+      photos: [
+        { src: "images/jasmino/dish-1.jpg", kind: "dish" },
+      ],
       hebrew: "ג׳סמינו",
       kind: "Shawarma",
       area: "Allenby",
@@ -135,10 +150,10 @@ window.GOODFOOD = {
     },
     {
       name: "Abu Hassan",
+      photos: [
+        { src: "images/abu-hassan/dish-1.jpg", kind: "dish" },
+      ],
       logo: "images/abu-hassan/logo.jpg",
-      dish: "images/abu-hassan/dish.jpg",
-      dish2: "images/abu-hassan/dish-2.jpg",
-      vibe: "images/abu-hassan/vibe.jpg",
       hebrew: "אבו חסן",
       kind: "Hummus",
       area: "Jaffa",
@@ -151,9 +166,11 @@ window.GOODFOOD = {
     },
     {
       name: "HaKosem",
-      dish: "images/hakosem/dish.jpg",
-      dish2: "images/hakosem/dish-2.jpg",
-      vibe: "images/hakosem/vibe.jpg",
+      photos: [
+        { src: "images/hakosem/dish-1.jpg", kind: "dish" },
+        { src: "images/hakosem/dish-2.jpg", kind: "dish" },
+        { src: "images/hakosem/dish-3.jpg", kind: "dish" },
+      ],
       hebrew: "הקוסם",
       kind: "Falafel · Sabich",
       area: "Center",
@@ -168,10 +185,10 @@ window.GOODFOOD = {
   pizza: [
     {
       name: "Pizza Har Sinai",
+      photos: [
+        { src: "images/har-sinai/dish-1.jpg", kind: "dish" },
+      ],
       logo: "images/har-sinai/logo.jpg",
-      dish: "images/har-sinai/dish.jpg",
-      dish2: "images/har-sinai/dish-2.jpg",
-      vibe: "images/har-sinai/vibe.jpg",
       hebrew: "פיצה הר סיני",
       kind: "Pizza",
       area: "Nahalat Binyamin",
@@ -184,10 +201,13 @@ window.GOODFOOD = {
     },
     {
       name: "Brooklyn Pizza",
+      photos: [
+        { src: "images/brooklyn/dish-1.jpg", kind: "dish" },
+        { src: "images/brooklyn/dish-2.jpg", kind: "dish" },
+        { src: "images/brooklyn/dish-3.jpg", kind: "dish" },
+        { src: "images/brooklyn/outside.jpg", kind: "outside" },
+      ],
       logo: "images/brooklyn/logo.jpg",
-      dish: "images/brooklyn/dish.jpg",
-      dish2: "images/brooklyn/dish-2.jpg",
-      vibe: "images/brooklyn/vibe.jpg",
       hebrew: "ברוקלין פיצה",
       kind: "New York slice",
       area: "Dizengoff",
@@ -200,9 +220,11 @@ window.GOODFOOD = {
     },
     {
       name: "Pizza Lila",
-      dish: "images/lila/dish.jpg",
-      dish2: "images/lila/dish-2.jpg",
-      vibe: "images/lila/vibe.jpg",
+      photos: [
+        { src: "images/lila/dish-1.jpg", kind: "dish" },
+        { src: "images/lila/dish-2.jpg", kind: "dish" },
+        { src: "images/lila/dish-3.jpg", kind: "dish" },
+      ],
       hebrew: "פיצה לילה",
       kind: "Roman slice by weight",
       area: "Shenkin",
@@ -217,9 +239,11 @@ window.GOODFOOD = {
   burgers: [
     {
       name: "GDB",
-      dish: "images/gdb/dish.jpg",
-      dish2: "images/gdb/dish-2.jpg",
-      vibe: "images/gdb/vibe.jpg",
+      photos: [
+        { src: "images/gdb/dish-1.jpg", kind: "dish" },
+        { src: "images/gdb/dish-2.jpg", kind: "dish" },
+        { src: "images/gdb/dish-3.jpg", kind: "dish" },
+      ],
       hebrew: "GDB",
       kind: "Dry-aged burgers",
       area: "Ibn Gabirol",
@@ -232,10 +256,12 @@ window.GOODFOOD = {
     },
     {
       name: "Prozdor",
+      photos: [
+        { src: "images/prozdor/dish-1.jpg", kind: "dish" },
+        { src: "images/prozdor/dish-2.jpg", kind: "dish" },
+        { src: "images/prozdor/dish-3.jpg", kind: "dish" },
+      ],
       logo: "images/prozdor/logo.jpg",
-      dish: "images/prozdor/dish.jpg",
-      dish2: "images/prozdor/dish-2.jpg",
-      vibe: "images/prozdor/vibe.jpg",
       hebrew: "הפרוזדור",
       kind: "Burger bar",
       area: "Old North",
@@ -248,10 +274,11 @@ window.GOODFOOD = {
     },
     {
       name: "Jango",
+      photos: [
+        { src: "images/jango/dish-1.jpg", kind: "dish" },
+        { src: "images/jango/dish-2.jpg", kind: "dish" },
+      ],
       logo: "images/jango/logo.jpg",
-      dish: "images/jango/dish.jpg",
-      dish2: "images/jango/dish-2.jpg",
-      vibe: "images/jango/vibe.jpg",
       hebrew: "ג׳אנגו",
       kind: "Burgers · Meat bistro",
       area: "Kerem HaTeimanim",
@@ -266,10 +293,12 @@ window.GOODFOOD = {
   sweets: [
     {
       name: "Cassata",
+      photos: [
+        { src: "images/cassata/dish-1.jpg", kind: "dish" },
+        { src: "images/cassata/dish-2.jpg", kind: "dish" },
+        { src: "images/cassata/dish-3.jpg", kind: "dish" },
+      ],
       logo: "images/cassata/logo.jpg",
-      dish: "images/cassata/dish.jpg",
-      dish2: "images/cassata/dish-2.jpg",
-      vibe: "images/cassata/vibe.jpg",
       hebrew: "קסטה",
       kind: "Gelato · Wine bar",
       area: "Park HaMesila",
@@ -282,10 +311,11 @@ window.GOODFOOD = {
     },
     {
       name: "Otello",
+      photos: [
+        { src: "images/otello/dish-1.jpg", kind: "dish" },
+        { src: "images/otello/dish-2.jpg", kind: "dish" },
+      ],
       logo: "images/otello/logo.jpg",
-      dish: "images/otello/dish.jpg",
-      dish2: "images/otello/dish-2.jpg",
-      vibe: "images/otello/vibe.jpg",
       hebrew: "אותלו",
       kind: "Gelato · Chocolate",
       area: "North Dizengoff",

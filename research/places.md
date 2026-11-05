@@ -68,58 +68,61 @@ Sources: https://www.ynetnews.com/food/article/bk0kswez11x , https://www.mako.co
 https://timeout.co.il/הגלידריות-הכי-טובות/ , https://www.mako.co.il/news-money/consumer/Article-61455d1b0c10a91027.htm ,
 https://timeout.co.il/ampm-m25/ , https://www.timeout.com/israel/restaurants/vitrina-ibn-gvirol
 
+
 # Image sources
-Photos are from the places' own sites, Wolt, Time Out, and Google Maps visitor photos
-(via atly.com / mapstr.com). Google Maps visitor photos belong to the people who took them;
-replace them with official photos before sharing the guide widely.
+Professional photos only: the places' own sites, Time Out, Ontopo, Wolt, Ynet, and Archilovers (Café Popular, architect Michael Azoulay).
 
 | Place | File | Source page |
 |---|---|---|
-| abu-hassan | dish | https://mapstr.com/place/uVayeCRWevg |
-| abu-hassan | vibe | https://mapstr.com/place/uVayeCRWevg |
-| abu-hassan | logo | https://wolt.com/en/isr/tel-aviv/restaurant/abu-hassan |
-| bar51 | dish | https://www.atly.com/location/Bar51 |
-| bar51 | vibe | https://www.bar51tlv.com/ |
-| bar51 | logo | https://www.bar51tlv.com/ |
-| brooklyn | dish | https://www.timeout.com/israel/restaurants/brooklyn-pizza |
-| brooklyn | vibe | https://brooklynpizza.co.il/ |
-| brooklyn | logo | https://brooklynpizza.co.il/ |
-| cafe-popular | dish | https://www.atly.com/location/CafePopular |
-| cafe-popular | vibe | https://jacobsamuelhotel.com/cafe-popular |
-| cafe-popular | logo | https://ontopo.com/en/il/page/79798974 |
-| cassata | dish | https://wolt.com/en/isr/tel-aviv/restaurant/cassata |
-| cassata | vibe | https://www.atly.com/location/Cassata |
-| cassata | logo | https://wolt.com/en/isr/tel-aviv/restaurant/cassata |
-| gdb | dish | https://www.atly.com/location/GDB |
-| gdb | vibe | https://www.atly.com/location/GDB |
-| habasta | dish | https://www.atly.com/location/HaBasta |
-| habasta | vibe | https://www.atly.com/location/HaBasta |
-| hakosem | dish | https://www.timeout.com/israel/restaurants/hakosem |
-| hakosem | vibe | https://www.atly.com/location/HaKosem2 |
-| har-sinai | dish | https://wolt.com/en/isr/tel-aviv/restaurant/pizza-har-sinai |
-| har-sinai | vibe | https://www.atly.com/location/PizzaMountSinai |
-| har-sinai | logo | https://pizzaharsinai.co.il/ |
-| jango | dish | https://wolt.com/en/isr/tel-aviv/restaurant/jango-tel-aviv |
-| jango | vibe | https://www.atly.com/location/JangoBurger |
-| jango | logo | https://wolt.com/en/isr/tel-aviv/restaurant/jango-tel-aviv |
-| jasmino | dish | https://www.atly.com/location/Jasmino |
-| jasmino | vibe | https://www.atly.com/location/Jasmino |
-| lila | dish | https://wolt.com/en/isr/tel-aviv/restaurant/lila-pizza |
-| lila | vibe | https://www.atly.com/location/PizzaLila |
-| otello | dish | https://www.atly.com/location/Otello |
-| otello | vibe | https://www.atly.com/location/Otello |
-| otello | logo | https://wolt.com/en/isr/tel-aviv/restaurant/otellogelato |
-| prozdor | dish | https://www.atly.com/location/Prozdor |
-| prozdor | vibe | https://www.prozdor.co.il/ |
-| prozdor | logo | https://www.prozdor.co.il/ |
-| shila | dish | https://www.timeout.com/israel/restaurants/shila |
-| shila | vibe | https://www.shila-rest.co.il/ |
-| shila | logo | https://www.shila-rest.co.il/ |
-| sun-young | dish | https://sunyoung.co.il/ |
-| sun-young | vibe | https://www.atly.com/location/SunYoung |
-| sun-young | logo | https://sunyoung.co.il/ |
-| thai-house | dish | https://www.thai-house.co.il/ |
-| thai-house | vibe | https://www.thai-house.co.il/ |
-| thai-house | logo | https://www.thai-house.co.il/ |
+| shila | dish-1 | https://www.timeout.com/israel/restaurants/shila |
+| shila | dish-2 | https://www.timeout.com/israel/restaurants/shila |
+| shila | dish-3 | https://www.timeout.com/israel/restaurants/shila |
+| habasta | dish-1 | https://www.timeout.com/israel/restaurants/habasta |
+| habasta | dish-2 | https://www.timeout.com/israel/restaurants/habasta |
+| habasta | dish-3 | https://www.timeout.com/israel/restaurants/habasta |
+| bar51 | interior-1 | https://www.timeout.com/israel/bars/bar-51 |
+| bar51 | dish-1 | https://www.timeout.com/israel/bars/bar-51 |
+| sun-young | interior-1 | https://www.sunyoung.co.il/ |
+| sun-young | interior-2 | https://ontopo.com/en/il/page/75691527 |
+| sun-young | dish-1 | https://sunyoung.co.il/ |
+| sun-young | dish-2 | https://sunyoung.co.il/ |
+| sun-young | dish-3 | https://sunyoung.co.il/ |
+| cafe-popular | interior-1 | https://www.archilovers.com/projects/264847/cafe-popular-tel-aviv.html |
+| cafe-popular | interior-2 | https://www.archilovers.com/projects/264847/cafe-popular-tel-aviv.html |
+| cafe-popular | interior-3 | https://www.archilovers.com/projects/264847/cafe-popular-tel-aviv.html |
+| cafe-popular | dish-1 | https://www.timeout.com/israel/restaurants/cafe-popular |
+| cafe-popular | dish-2 | https://ontopo.com/en/il/page/79798974 |
+| thai-house | interior-1 | https://ontopo.com/en/il/page/63465729 |
+| thai-house | interior-2 | https://ontopo.com/en/il/page/63465729 |
+| thai-house | interior-3 | https://www.thai-house.co.il/ |
+| thai-house | dish-1 | https://www.timeout.com/israel/restaurants/thai-house |
+| thai-house | dish-2 | https://www.thai-house.co.il/ |
+| jasmino | dish-1 | https://www.timeout.com/israel/restaurants/jasmino |
+| abu-hassan | dish-1 | https://wolt.com/en/isr/tel-aviv/restaurant/abu-hassan |
+| hakosem | dish-1 | https://www.timeout.com/israel/restaurants/hakosem |
+| hakosem | dish-2 | https://wolt.com/en/isr/tel-aviv/restaurant/hakosem |
+| hakosem | dish-3 | https://wolt.com/en/isr/tel-aviv/restaurant/hakosem |
+| har-sinai | dish-1 | https://wolt.com/en/isr/tel-aviv/restaurant/pizza-har-sinai |
+| brooklyn | dish-1 | https://www.timeout.com/israel/restaurants/brooklyn-pizza |
+| brooklyn | dish-2 | https://wolt.com/en/isr/tel-aviv/restaurant/brooklyn-pizzadiz |
+| brooklyn | dish-3 | https://wolt.com/en/isr/tel-aviv/restaurant/brooklyn-pizzadiz |
+| brooklyn | outside | https://brooklynpizza.co.il/ |
+| lila | dish-1 | https://wolt.com/en/isr/tel-aviv/restaurant/lila-pizza |
+| lila | dish-2 | https://wolt.com/en/isr/tel-aviv/restaurant/lila-pizza |
+| lila | dish-3 | https://wolt.com/en/isr/tel-aviv/restaurant/lila-pizza |
+| gdb | dish-1 | https://wolt.com/en/isr/tel-aviv/restaurant/gdb |
+| gdb | dish-2 | https://wolt.com/en/isr/tel-aviv/restaurant/gdb |
+| gdb | dish-3 | https://wolt.com/en/isr/tel-aviv/restaurant/gdb |
+| prozdor | dish-1 | https://www.timeout.com/israel/restaurants/prozdor |
+| prozdor | dish-2 | https://www.prozdor.co.il/ |
+| prozdor | dish-3 | https://wolt.com/en/isr/tel-aviv/restaurant/prozdor-burger |
+| jango | dish-1 | https://wolt.com/en/isr/tel-aviv/restaurant/jango-tel-aviv |
+| jango | dish-2 | https://wolt.com/en/isr/tel-aviv/restaurant/jango-tel-aviv |
+| cassata | dish-1 | https://www.ynetnews.com/culture/article/rjjhok00zxx |
+| cassata | dish-2 | https://wolt.com/en/isr/tel-aviv/restaurant/cassata |
+| cassata | dish-3 | https://wolt.com/en/isr/tel-aviv/restaurant/cassata |
+| otello | dish-1 | https://wolt.com/en/isr/tel-aviv/restaurant/otellogelato |
+| otello | dish-2 | https://wolt.com/en/isr/tel-aviv/restaurant/otellogelato |
 
-No logo found for: GDB, HaBasta, HaKosem, Jasmino, Pizza Lila (the site shows initials).
+No professional interior photo found for: Shila (new Montefiore room; Time Out Hebrew has one by Assaf Karela), HaBasta, Jasmino, Abu Hassan, HaKosem, Pizza Har Sinai, Brooklyn (exterior only), Pizza Lila, GDB, Prozdor, Jango, Cassata, Otello.
+No logo found for: GDB, HaBasta, HaKosem, Jasmino, Pizza Lila.
