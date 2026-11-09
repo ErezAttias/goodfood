@@ -1,201 +1,247 @@
 <title>Eat Tel Aviv</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Where to eat and drink in Tel Aviv, picked by your colleagues at JFrog Israel.">
+<meta name="description" content="Where to eat in Tel Aviv, picked by your colleagues at JFrog Israel.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=Rubik:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
-  /* Layout: a pocket guide. Big type opener, four list tabs, one tall editorial entry per place:
-     full-width photo slider (inside, food, outside), big logo + name (with Hebrew for the taxi driver), why, order, three actions. */
+  /* Layout: "Tel Aviv after dark". Full-bleed photo hero, big photo tiles to pick a list,
+     then photo-first cards (name over the photo, slider behind it), two columns on desktop.
+     Deliberately single-theme (dark): food photography reads best on a deep ground. */
   :root {
-    --paper: #f3f2ee;        /* White City plaster */
-    --card: #ffffff;
-    --ink: #15171c;
-    --ink-2: #5b5f69;
-    --rule: #dddbd4;
-    --sea: #0b6b88;          /* Mediterranean, the one accent */
-    --on-sea: #ffffff;
-    --sun: #f3b43a;
-    --c-restaurants: #0b6b88;
-    --c-street: #c4651c;
-    --c-pizza: #b23a2b;
-    --c-burgers: #6b5a1e;
-    --c-sweets: #c4416a;
-    --ph-a: #e7e4db;
-    --ph-b: #dcd8cd;
+    color-scheme: dark;
+    --night: #0d1820;        /* the sea after sunset */
+    --night-2: #13222c;      /* raised surface */
+    --night-3: #1b2e3a;      /* lines, chips */
+    --sand: #f3e9da;         /* text */
+    --sand-2: #b9ad9c;       /* secondary text */
+    --sunset: #ff8a5b;       /* the one accent */
+    --on-sunset: #2a0f04;
+    --c-restaurants: #ff8a5b;
+    --c-street: #f6c25b;
+    --c-pizza: #ff6f61;
+    --c-burgers: #e9a46a;
+    --c-sweets: #f59ac0;
+    --shade: rgba(6, 12, 16, .82);
     --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
     --body: "Figtree", "Segoe UI", system-ui, sans-serif;
-    --hebrew: "Rubik", "Arial Hebrew", "Noto Sans Hebrew", sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #111316; --card: #1a1d22; --ink: #f1efe9; --ink-2: #a2a6ae; --rule: #2c3038;
-      --sea: #4fb3d1; --on-sea: #06222c; --sun: #f3b43a;
-      --c-restaurants: #4fb3d1; --c-street: #f0954a; --c-pizza: #ef7a68; --c-burgers: #d6bd6a; --c-sweets: #f08aa7;
-      --ph-a: #22262d; --ph-b: #2b3038; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --paper: #111316; --card: #1a1d22; --ink: #f1efe9; --ink-2: #a2a6ae; --rule: #2c3038;
-    --sea: #4fb3d1; --on-sea: #06222c; --sun: #f3b43a;
-    --c-restaurants: #4fb3d1; --c-street: #f0954a; --c-pizza: #ef7a68; --c-burgers: #d6bd6a; --c-sweets: #f08aa7;
-    --ph-a: #22262d; --ph-b: #2b3038; color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font: 16px/1.55 var(--body);
-    -webkit-font-smoothing: antialiased;
+    margin: 0; background: var(--night); color: var(--sand);
+    font: 16px/1.55 var(--body); -webkit-font-smoothing: antialiased;
   }
   body::before {
     content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
-    z-index: 10; background: var(--paper);
+    z-index: 10; background: var(--night);
   }
   .wrap {
-    max-width: 760px; margin: 0 auto;
+    max-width: 1160px; margin: 0 auto;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
   a { color: inherit; }
-  :focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; border-radius: 6px; }
+  :focus-visible { outline: 2px solid var(--sunset); outline-offset: 3px; border-radius: 8px; }
 
-  /* Opener */
-  .hero { padding-block: 44px 28px; }
+  /* Hero */
+  .hero { position: relative; overflow: hidden; isolation: isolate; }
+  .hero img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;
+    transform: scale(1.04);
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(13, 24, 32, .55) 0%, rgba(13, 24, 32, .35) 35%, var(--night) 100%),
+      linear-gradient(90deg, rgba(13, 24, 32, .7), transparent 70%);
+  }
+  .hero .wrap { padding-block: clamp(72px, 14vw, 150px) clamp(28px, 5vw, 48px); }
   .kicker {
-    font: 600 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2);
-    display: flex; align-items: center; gap: 8px;
+    display: inline-flex; align-items: center; gap: 10px;
+    font: 600 12px/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--sand);
+    background: rgba(13, 24, 32, .55); border: 1px solid rgba(243, 233, 218, .18);
+    padding: 9px 14px; border-radius: 999px; backdrop-filter: blur(8px);
   }
-  .kicker i { width: 8px; height: 8px; border-radius: 50%; background: var(--sun); display: inline-block; }
+  .kicker i { width: 7px; height: 7px; border-radius: 50%; background: var(--sunset); box-shadow: 0 0 12px var(--sunset); }
   h1 {
-    font: 800 clamp(52px, 14vw, 108px)/.88 var(--display); letter-spacing: -.045em;
-    margin: 18px 0 18px; text-wrap: balance;
+    margin: 22px 0 18px; font: 800 clamp(64px, 15vw, 168px)/.84 var(--display); letter-spacing: -.055em;
+    text-wrap: balance;
   }
-  h1 .he { display: block; font: 500 clamp(18px, 4vw, 24px)/1 var(--hebrew); letter-spacing: 0; color: var(--ink-2); margin-top: 16px; text-align: left; }
-  .intro { font-size: 18px; color: var(--ink-2); max-width: 34em; margin: 0; }
+  h1 em { font: italic 400 1.02em/1 var(--serif); letter-spacing: -.02em; color: var(--sunset); padding-right: .04em; }
+  .lead { font-size: clamp(17px, 2.2vw, 20px); color: var(--sand); opacity: .88; max-width: 30em; margin: 0; }
 
-  /* Tabs */
-  .tabs-bar {
-    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
-    background: var(--paper); border-bottom: 1px solid var(--rule);
+  /* Category tiles */
+  .pick { padding-block: 8px 8px; }
+  .pick-title { font: 600 13px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--sand-2); margin: 0 0 14px; }
+  .tiles { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+  .tile {
+    position: relative; isolation: isolate; overflow: hidden; border-radius: 20px; cursor: pointer;
+    aspect-ratio: 1 / 1; max-width: 100%; border: 0; padding: 0; text-align: left; color: var(--sand);
+    background: var(--night-2); font: inherit;
+    transition: transform .25s ease;
   }
-  .tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-block: 10px; }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab {
+  .tile:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 8; }
+  @media (min-width: 760px) {
+    .tiles { grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .tile, .tile:first-child { grid-column: auto; aspect-ratio: 3 / 4; }
+  }
+  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .5s ease; }
+  .tile::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(180deg, transparent 30%, rgba(8, 14, 18, .9) 100%);
+  }
+  .tile .t-body { position: absolute; left: 16px; right: 16px; bottom: 14px; }
+  .tile .t-name { display: block; font: 700 clamp(22px, 5.4vw, 30px)/1 var(--display); letter-spacing: -.03em; }
+  .tile .t-count { display: block; font: 500 13px/1 var(--body); color: var(--sand-2); margin-top: 6px; }
+  .tile .t-go {
+    position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--sand); color: var(--night); transition: background .2s, transform .2s;
+  }
+  .tile .t-go svg { width: 18px; height: 18px; }
+  .tile[aria-selected="true"] { box-shadow: 0 0 0 3px var(--night), 0 0 0 5px var(--c); }
+  .tile[aria-selected="true"] .t-go { background: var(--c); color: var(--on-sunset); }
+  @media (hover: hover) {
+    .tile:hover img { transform: scale(1.06); }
+    .tile:hover .t-go { transform: translateX(3px); }
+  }
+
+  /* Sticky mini bar */
+  .bar {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6;
+    background: rgba(13, 24, 32, .86); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--night-3); margin-top: 28px;
+  }
+  .chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-block: 10px; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
     flex: 0 0 auto; display: flex; align-items: center; gap: 8px; cursor: pointer;
-    font: 600 15px/1 var(--body); color: var(--ink-2);
-    background: transparent; border: 0; border-radius: 999px; padding: 10px 14px;
+    font: 600 14px/1 var(--body); color: var(--sand-2); background: var(--night-2);
+    border: 1px solid var(--night-3); border-radius: 999px; padding: 4px 14px 4px 4px;
   }
-  .tab .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
-  .tab .n { font-variant-numeric: tabular-nums; font-weight: 500; opacity: .7; }
-  .tab[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+  .chip img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+  .chip[aria-selected="true"] { color: var(--on-sunset); background: var(--c); border-color: var(--c); }
 
-  /* List header */
-  .list-head { padding-block: 32px 4px; }
-  .list-head h2 { font: 700 36px/1 var(--display); letter-spacing: -.03em; margin: 0 0 8px; }
-  .list-head p { margin: 0; color: var(--ink-2); max-width: 36em; }
+  /* List */
+  .list-head { padding-block: 36px 6px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+  .list-head h2 { margin: 0; font: 800 clamp(40px, 8vw, 64px)/.95 var(--display); letter-spacing: -.045em; }
+  .list-head h2 em { font: italic 400 1.05em/1 var(--serif); color: var(--c); letter-spacing: -.01em; }
+  .list-head p { margin: 0; color: var(--sand-2); max-width: 30em; }
+  .entries { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; padding-block: 22px 64px; }
+  @media (min-width: 860px) { .entries { grid-template-columns: 1fr 1fr; gap: 28px; } }
 
-  /* Entry */
-  .entries { display: grid; gap: 20px; padding-block: 20px 48px; }
-  .entry { background: var(--card); border-radius: 22px; overflow: hidden; }
-  /* Photo slider: one full-width photo at a time, swipe on phones, arrows on desktop */
-  .slider { position: relative; background: var(--ph-a); }
+  /* Card */
+  .entry { background: var(--night-2); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .media { position: relative; }
+  .slider { position: relative; background: var(--night-3); }
   .track {
     display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-    aspect-ratio: 4 / 3; max-width: 100%; overscroll-behavior-x: contain;
+    aspect-ratio: 4 / 3.6; max-width: 100%; overscroll-behavior-x: contain;
   }
-  @media (min-width: 620px) { .track { aspect-ratio: 16 / 10; } }
   .track::-webkit-scrollbar { display: none; }
   .slide { position: relative; flex: 0 0 100%; scroll-snap-align: start; margin: 0; overflow: hidden; }
   .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .slide figcaption {
-    position: absolute; left: 12px; top: 12px;
-    font: 600 11px/1 var(--body); letter-spacing: .1em; text-transform: uppercase;
-    background: var(--card); color: var(--ink); padding: 6px 8px; border-radius: 6px;
+  .media::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(8, 14, 18, .45) 0%, transparent 22%, transparent 48%, rgba(8, 14, 18, .92) 100%);
   }
-  .dots {
-    position: absolute; right: 12px; bottom: 12px; display: flex; gap: 6px;
-    background: rgba(0, 0, 0, .45); padding: 7px 9px; border-radius: 999px;
+  .label {
+    position: absolute; left: 16px; top: 16px; z-index: 2;
+    font: 700 11px/1 var(--body); letter-spacing: .12em; text-transform: uppercase;
+    color: var(--sand); background: rgba(8, 14, 18, .55); backdrop-filter: blur(6px);
+    padding: 7px 10px; border-radius: 999px;
   }
-  .dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .5); cursor: pointer; }
-  .dots button[aria-current="true"] { background: #fff; width: 18px; border-radius: 4px; }
+  .dots { position: absolute; right: 16px; top: 16px; z-index: 2; display: flex; gap: 5px; background: rgba(8, 14, 18, .55); padding: 8px 10px; border-radius: 999px; backdrop-filter: blur(6px); }
+  .dots button { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 50%; background: rgba(243, 233, 218, .45); cursor: pointer; }
+  .dots button[aria-current="true"] { background: var(--sand); width: 16px; border-radius: 3px; }
   .nav {
-    position: absolute; top: 50%; translate: 0 -50%; width: 40px; height: 40px; border-radius: 50%;
-    border: 0; background: var(--card); color: var(--ink); cursor: pointer; display: none;
-    place-items: center; box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+    position: absolute; top: 42%; translate: 0 -50%; z-index: 2; width: 42px; height: 42px; border-radius: 50%;
+    border: 0; background: var(--sand); color: var(--night); cursor: pointer; display: none; place-items: center;
   }
   .nav svg { width: 18px; height: 18px; }
-  .nav.prev { left: 12px; } .nav.next { right: 12px; }
-  @media (hover: hover) { .slider:hover .nav { display: grid; } .nav[disabled] { opacity: 0; pointer-events: none; } }
-  .slide .empty {
-    position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px;
-    color: var(--ink-2); font: 500 13px/1.3 var(--body);
-  }
-  .slide .empty b { display: block; font: 700 32px/1 var(--display); letter-spacing: -.03em; color: var(--c); margin-bottom: 6px; }
+  .nav.prev { left: 14px; } .nav.next { right: 14px; }
+  @media (hover: hover) { .entry:hover .nav { display: grid; } .nav[disabled] { opacity: 0; pointer-events: none; } }
 
-  .body { padding: 0 20px 20px; display: grid; gap: 14px; }
-  .id { display: grid; gap: 12px; justify-items: start; margin-top: -52px; position: relative; z-index: 1; }
+  .ident { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 2; display: flex; align-items: center; gap: 14px; pointer-events: none; }
   .logo {
-    flex: 0 0 auto; width: 104px; height: 104px; border-radius: 50%;
-    background: var(--card); border: 4px solid var(--card); box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
-    display: grid; place-items: center; overflow: hidden;
+    flex: 0 0 auto; width: 76px; height: 76px; border-radius: 50%; overflow: hidden;
+    background: var(--sand); box-shadow: 0 0 0 3px rgba(243, 233, 218, .9), 0 8px 24px rgba(0, 0, 0, .45);
+    display: grid; place-items: center;
   }
   .logo img { width: 100%; height: 100%; object-fit: cover; }
-  .logo .mono { font: 800 34px/1 var(--display); color: var(--c); letter-spacing: -.04em; }
-  .names { min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
-  .names h3 { font: 700 28px/1 var(--display); letter-spacing: -.03em; margin: 0; text-wrap: balance; }
-  .names .he { font: 500 16px/1 var(--hebrew); color: var(--ink-2); }
-  .facts { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; color: var(--ink-2); }
-  .facts .kind { color: var(--c); font-weight: 600; }
-  .price { font-weight: 600; color: var(--ink); letter-spacing: .04em; font-variant-numeric: tabular-nums; }
-  .price s { text-decoration: none; opacity: .25; }
-  .why { margin: 0; font-size: 16.5px; max-width: 38em; }
-  .order { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: baseline; font-size: 15px; }
-  .order span { font: 600 11px/1 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .logo .mono { font: 800 26px/1 var(--display); color: var(--night); letter-spacing: -.04em; }
+  .ident-text { min-width: 0; }
+  .ident h3 { margin: 0; font: 800 clamp(30px, 6vw, 40px)/.95 var(--display); letter-spacing: -.04em; text-shadow: 0 2px 18px rgba(0, 0, 0, .4); text-wrap: balance; }
+  .facts { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 8px; font: 500 14px/1.2 var(--body); color: var(--sand); opacity: .92; }
+  .facts .kind { color: var(--c); font-weight: 700; }
+  .price { letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+  .price s { text-decoration: none; opacity: .35; }
 
-  .actions { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 8px; padding-top: 4px; }
+  .body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
+  .why { margin: 0; font-size: 16.5px; color: var(--sand); }
+  .order { display: flex; gap: 12px; align-items: baseline; padding: 14px 16px; border-radius: 14px; background: var(--night); }
+  .order span { flex: 0 0 auto; font: 700 11px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--c); }
+  .order div { font-size: 15px; color: var(--sand); }
+  .actions { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 8px; margin-top: auto; }
   .act {
     display: flex; align-items: center; justify-content: center; gap: 7px; min-width: 0;
-    font: 600 14px/1 var(--body); text-decoration: none; white-space: nowrap;
-    padding: 13px 10px; border-radius: 12px; border: 1px solid var(--rule); color: var(--ink); background: transparent;
+    font: 700 14px/1 var(--body); text-decoration: none; white-space: nowrap;
+    padding: 14px 10px; border-radius: 14px; border: 1px solid var(--night-3); color: var(--sand); background: transparent;
+    transition: background .2s, border-color .2s;
   }
   .act svg { width: 17px; height: 17px; flex: 0 0 auto; }
-  .act.primary { background: var(--sea); border-color: var(--sea); color: var(--on-sea); }
-  .act.walkin { color: var(--ink-2); border-style: dashed; cursor: default; }
+  .act.primary { background: var(--sunset); border-color: var(--sunset); color: var(--on-sunset); }
+  .act.walkin { color: var(--sand-2); border-style: dashed; cursor: default; }
+  @media (hover: hover) { a.act:not(.primary):hover { background: var(--night-3); } a.act.primary:hover { filter: brightness(1.08); } }
 
   /* Tips */
-  .tips { border-top: 1px solid var(--rule); padding-block: 36px 20px; }
-  .tips h2 { font: 700 28px/1.05 var(--display); letter-spacing: -.03em; margin: 0 0 18px; }
-  .tips dl { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin: 0; }
-  @media (min-width: 620px) { .tips dl { grid-template-columns: 1fr 1fr; gap: 18px 32px; } }
-  .tips dt { font-weight: 600; }
-  .tips dd { margin: 2px 0 0; color: var(--ink-2); font-size: 15px; }
-  footer { color: var(--ink-2); font-size: 14px; padding-block: 24px 56px; }
+  .tips { padding-block: 56px 24px; border-top: 1px solid var(--night-3); }
+  .tips h2 { margin: 0 0 24px; font: 800 clamp(34px, 6vw, 48px)/1 var(--display); letter-spacing: -.04em; }
+  .tips h2 em { font: italic 400 1.05em/1 var(--serif); color: var(--sunset); }
+  .tips dl { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 0; }
+  @media (min-width: 620px) { .tips dl { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .tips dl { grid-template-columns: 1fr 1fr 1fr; } }
+  .tips dl > div { background: var(--night-2); border-radius: 18px; padding: 18px 20px; }
+  .tips dt { font: 700 17px/1.2 var(--display); letter-spacing: -.01em; margin-bottom: 6px; }
+  .tips dd { margin: 0; color: var(--sand-2); font-size: 15px; }
+  footer { color: var(--sand-2); font-size: 14px; padding-block: 20px 64px; }
 
   @media (max-width: 440px) {
-    .body { padding: 0 16px 16px; }
+    .body { padding: 18px 16px 18px; }
+    .ident { left: 14px; right: 14px; bottom: 14px; gap: 12px; }
+    .logo { width: 64px; height: 64px; }
     .actions { grid-template-columns: 1fr 1fr; }
     .actions > :first-child { grid-column: 1 / -1; }
   }
+  @media (prefers-reduced-motion: reduce) { .tile, .tile img, .tile .t-go { transition: none; } }
 </style>
 
-<div class="wrap">
-  <header class="hero">
-    <div class="kicker"><i></i>JFrog Israel · Visitor's pocket guide</div>
-    <h1>Eat Tel Aviv. <span class="he" lang="he" dir="rtl">אוכלים בתל אביב</span></h1>
-    <p class="intro">No search, no ratings, no endless options. Just the short list of places we take our own friends to. Each place has its Hebrew name, so you can show it to the taxi driver.</p>
-  </header>
-</div>
+<header class="hero">
+  <img src="images/cafe-popular/interior-1.jpg" alt="">
+  <div class="wrap">
+    <span class="kicker"><i></i>JFrog Israel · Visitor guide</span>
+    <h1>Eat <em>Tel&nbsp;Aviv.</em></h1>
+    <p class="lead">The short list of places we send our own friends to. No ratings, no endless options, just the good stuff.</p>
+  </div>
+</header>
 
-<nav class="tabs-bar" aria-label="Lists">
-  <div class="wrap"><div class="tabs" role="tablist" id="tabs"></div></div>
+<section class="pick wrap" aria-label="Choose a list">
+  <p class="pick-title">What are you in the mood for?</p>
+  <div class="tiles" role="tablist" id="tiles"></div>
+</section>
+
+<nav class="bar" aria-label="Lists">
+  <div class="wrap"><div class="chips" id="chips"></div></div>
 </nav>
 
 <main class="wrap">
   <section id="list" role="tabpanel"></section>
 
   <section class="tips">
-    <h2>Before you go</h2>
+    <h2>Before <em>you go</em></h2>
     <dl>
       <div><dt>Book ahead</dt><dd>Thursday and Friday nights fill up. Most places book through Ontopo or Tabit, both in English.</dd></div>
       <div><dt>The weekend is Friday–Saturday</dt><dd>Shabbat runs from Friday sunset to Saturday night. Many places stay open; kosher ones close.</dd></div>
@@ -205,17 +251,17 @@
       <div><dt>Cards everywhere</dt><dd>Apple Pay and Google Pay work almost everywhere, including most street stalls.</dd></div>
     </dl>
   </section>
-  <footer>Picked by the JFrog Israel team. Opening hours change, so check before you go.</footer>
+  <footer>Picked by the JFrog Israel team. Prices: ₪ under 60, ₪₪ 60–150, ₪₪₪ 150–300, ₪₪₪₪ 300+ per person. Opening hours change, so check before you go.</footer>
 </main>
 
 <script src="restaurants.js"></script>
 <script>
   const LISTS = [
-    { id: "restaurants", label: "Restaurants", blurb: "Sit-down dinners worth planning an evening around.", c: "--c-restaurants" },
-    { id: "street", label: "Street food", blurb: "Counters, stalls and shared tables. Cheap, fast, and often the best meal of the trip.", c: "--c-street" },
-    { id: "pizza", label: "Pizza", blurb: "Tel Aviv takes pizza seriously. These are the ones locals line up for.", c: "--c-pizza" },
-    { id: "burgers", label: "Burgers", blurb: "For when you want something familiar, done very well.", c: "--c-burgers" },
-    { id: "sweets", label: "Dessert", blurb: "Gelato and the sweet stuff, for the walk after dinner.", c: "--c-sweets" },
+    { id: "restaurants", label: "Restaurants", em: "worth a night", blurb: "Sit-down dinners worth planning an evening around.", c: "--c-restaurants", cover: "images/cafe-popular/interior-2.jpg" },
+    { id: "street", label: "Street food", em: "eat standing", blurb: "Counters, stalls and shared tables. Cheap, fast, and often the best meal of the trip.", c: "--c-street", cover: "images/hakosem/dish-1.jpg" },
+    { id: "pizza", label: "Pizza", em: "by the slice", blurb: "Tel Aviv takes pizza seriously. These are the ones locals line up for.", c: "--c-pizza", cover: "images/lila/dish-2.jpg" },
+    { id: "burgers", label: "Burgers", em: "done right", blurb: "For when you want something familiar, done very well.", c: "--c-burgers", cover: "images/prozdor/dish-3.jpg" },
+    { id: "sweets", label: "Dessert", em: "for the walk home", blurb: "Gelato and the sweet stuff, for the walk after dinner.", c: "--c-sweets", cover: "images/cassata/dish-1.jpg" },
   ];
   const DATA = window.GOODFOOD || {};
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -224,55 +270,88 @@
     cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
     ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
     pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+    prev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+    next: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
   };
+  const LABEL = { interior: "Inside", dish: "The food", outside: "Outside", vibe: "The place" };
 
   const city = (p) => (p.area === "Jaffa" ? "Jaffa" : "Tel Aviv");
   const maps = (p) => "https://www.google.com/maps/search/?api=1&query=" + enc(p.address ? `${p.name}, ${p.address}` : `${p.name} ${city(p)}`);
   const insta = (p) => p.instagram ? `https://www.instagram.com/${enc(p.instagram.replace(/^@/, ""))}/` : `https://www.google.com/search?q=${enc(`${p.name} ${city(p)} instagram`)}`;
   const reserve = (p) => p.reserve || `https://www.google.com/search?q=${enc(`${p.name} ${city(p)} reservation ontopo OR tabit`)}`;
   const initials = (n) => n.length <= 3 ? n : n.replace(/^(The|Dr\.?)\s+/i, "").split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+  const count = (id) => (DATA[id] || []).length;
 
-  const LABEL = { interior: "Inside", dish: "The food", vibe: "The place", outside: "Outside" };
-  const ARROW = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="${d === "prev" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}"/></svg>`;
-
-  // photos: [{ src, kind }] in display order. Older entries with interior/dish/vibe fields still work.
   function photosOf(p) {
     if (Array.isArray(p.photos) && p.photos.length) return p.photos;
     return [["interior", "interior"], ["dish", "dish"], ["dish2", "dish"], ["vibe", "vibe"]].filter(([f]) => p[f]).map(([f, kind]) => ({ src: p[f], kind }));
   }
 
-  function slider(p) {
+  function media(p) {
     const photos = photosOf(p);
-    if (!photos.length) {
-      return `<div class="slider"><div class="track"><figure class="slide"><div class="empty"><div><b>${esc(p.kind.split("·")[0].trim())}</b>Photos coming soon</div></div></figure></div></div>`;
-    }
-    const slides = photos.map((ph, i) => {
-      const label = LABEL[ph.kind] || "";
-      return `<figure class="slide"><img src="${esc(ph.src)}" alt="${esc(`${label || "Photo"} at ${p.name}`)}" ${i ? 'loading="lazy"' : ""}>${label ? `<figcaption>${label}</figcaption>` : ""}</figure>`;
-    }).join("");
+    const slides = photos.map((ph, i) =>
+      `<figure class="slide" data-label="${esc(LABEL[ph.kind] || "")}"><img src="${esc(ph.src)}" alt="${esc(`${LABEL[ph.kind] || "Photo"} at ${p.name}`)}" ${i ? 'loading="lazy"' : ""}></figure>`).join("");
     const many = photos.length > 1;
+    const n = Math.max(1, Math.min(4, p.price || 1));
     return `
-      <div class="slider" aria-roledescription="carousel" aria-label="Photos of ${esc(p.name)}">
-        <div class="track" tabindex="0">${slides}</div>
+      <div class="media">
+        <div class="slider" aria-roledescription="carousel" aria-label="Photos of ${esc(p.name)}">
+          <div class="track" tabindex="0">${slides}</div>
+        </div>
+        ${photos.length ? `<span class="label">${esc(LABEL[photos[0].kind] || "")}</span>` : ""}
         ${many ? `
-          <button class="nav prev" aria-label="Previous photo" disabled>${ARROW("prev")}</button>
-          <button class="nav next" aria-label="Next photo">${ARROW("next")}</button>
+          <button class="nav prev" aria-label="Previous photo" disabled>${ICON.prev}</button>
+          <button class="nav next" aria-label="Next photo">${ICON.next}</button>
           <div class="dots">${photos.map((_, i) => `<button aria-label="Photo ${i + 1}" ${i ? "" : 'aria-current="true"'}></button>`).join("")}</div>` : ""}
+        <div class="ident">
+          <div class="logo">${p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.name)} logo">` : `<span class="mono" aria-hidden="true">${esc(initials(p.name))}</span>`}</div>
+          <div class="ident-text">
+            <h3>${esc(p.name)}</h3>
+            <div class="facts">
+              <span class="kind">${esc(p.kind)}</span>
+              <span>${esc(p.area)}</span>
+              <span class="price" aria-label="Price ${n} of 4">${"₪".repeat(n)}<s>${"₪".repeat(4 - n)}</s></span>
+            </div>
+          </div>
+        </div>
       </div>`;
   }
 
+  function entry(p, list) {
+    const primary = p.walkIn && !p.reserve
+      ? `<span class="act walkin" title="No reservations, just show up">Walk in, no booking</span>`
+      : `<a class="act primary" href="${esc(reserve(p))}" target="_blank" rel="noopener">${ICON.cal}Book a table</a>`;
+    return `
+      <article class="entry" style="--c: var(${list.c})">
+        ${media(p)}
+        <div class="body">
+          <p class="why">${esc(p.why)}</p>
+          ${p.order ? `<div class="order"><span>Order</span><div>${esc(p.order)}</div></div>` : ""}
+          <div class="actions">
+            ${primary}
+            <a class="act" href="${esc(insta(p))}" target="_blank" rel="noopener">${ICON.ig}Instagram</a>
+            <a class="act" href="${esc(maps(p))}" target="_blank" rel="noopener">${ICON.pin}Directions</a>
+          </div>
+        </div>
+      </article>`;
+  }
+
   function wireSliders(root) {
-    root.querySelectorAll(".slider").forEach((s) => {
-      const track = s.querySelector(".track");
-      const dots = [...s.querySelectorAll(".dots button")];
-      if (!dots.length) return;
-      const prev = s.querySelector(".prev"), next = s.querySelector(".next");
+    root.querySelectorAll(".entry").forEach((card) => {
+      const track = card.querySelector(".track");
+      const slides = [...card.querySelectorAll(".slide")];
+      const dots = [...card.querySelectorAll(".dots button")];
+      const label = card.querySelector(".label");
+      if (slides.length < 2) return;
+      const prev = card.querySelector(".prev"), next = card.querySelector(".next");
       const idx = () => Math.round(track.scrollLeft / track.clientWidth);
-      const go = (i) => track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" });
+      const go = (i) => track.scrollTo({ left: Math.max(0, Math.min(slides.length - 1, i)) * track.clientWidth, behavior: "smooth" });
       const sync = () => {
         const i = idx();
         dots.forEach((d, j) => d.setAttribute("aria-current", i === j));
-        prev.disabled = i === 0; next.disabled = i === dots.length - 1;
+        prev.disabled = i === 0; next.disabled = i === slides.length - 1;
+        if (label && slides[i]) label.textContent = slides[i].dataset.label;
       };
       track.addEventListener("scroll", () => requestAnimationFrame(sync), { passive: true });
       dots.forEach((d, j) => d.addEventListener("click", () => go(j)));
@@ -285,56 +364,41 @@
     });
   }
 
-  function entry(p, list) {
-    const n = Math.max(1, Math.min(4, p.price || 1));
-    const primary = p.walkIn && !p.reserve
-      ? `<span class="act walkin" title="No reservations, just show up">Walk in, no booking</span>`
-      : `<a class="act primary" href="${esc(reserve(p))}" target="_blank" rel="noopener">${ICON.cal}Book a table</a>`;
-    return `
-      <article class="entry" style="--c: var(${list.c})">
-        ${slider(p)}
-        <div class="body">
-          <div class="id">
-            <div class="logo">${p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.name)} logo">` : `<span class="mono" aria-hidden="true">${esc(initials(p.name))}</span>`}</div>
-            <div class="names"><h3>${esc(p.name)}</h3>${p.hebrew && p.hebrew !== p.name ? `<span class="he" lang="he" dir="rtl">${esc(p.hebrew)}</span>` : ""}</div>
-          </div>
-          <div class="facts">
-            <span class="kind">${esc(p.kind)}</span>
-            <span>${esc(p.area)}</span>
-            <span class="price" aria-label="Price ${n} of 4">${"$".repeat(n)}<s>${"$".repeat(4 - n)}</s></span>
-          </div>
-          <p class="why">${esc(p.why)}</p>
-          ${p.order ? `<div class="order"><span>Order</span><div>${esc(p.order)}</div></div>` : ""}
-          <div class="actions">
-            ${primary}
-            <a class="act" href="${esc(insta(p))}" target="_blank" rel="noopener">${ICON.ig}Instagram</a>
-            <a class="act" href="${esc(maps(p))}" target="_blank" rel="noopener">${ICON.pin}Directions</a>
-          </div>
-        </div>
-      </article>`;
-  }
-
-  const tabsEl = document.getElementById("tabs");
+  const tilesEl = document.getElementById("tiles");
+  const chipsEl = document.getElementById("chips");
   const listEl = document.getElementById("list");
-  tabsEl.innerHTML = LISTS.map((l) => `
-    <button class="tab" role="tab" id="tab-${l.id}" data-id="${l.id}" style="--c: var(${l.c})" aria-controls="list">
-      <span class="dot"></span>${l.label}<span class="n">${(DATA[l.id] || []).length}</span>
+
+  tilesEl.innerHTML = LISTS.map((l) => `
+    <button class="tile" role="tab" data-id="${l.id}" style="--c: var(${l.c})" aria-controls="list">
+      <img src="${l.cover}" alt="">
+      <span class="t-body">
+        <span class="t-name">${l.label}</span><span class="t-count">${count(l.id)} places</span>
+      </span>
+      <span class="t-go" aria-hidden="true">${ICON.arrow}</span>
     </button>`).join("");
+  chipsEl.innerHTML = LISTS.map((l) => `
+    <button class="chip" data-id="${l.id}" style="--c: var(${l.c})"><img src="${l.cover}" alt="">${l.label}</button>`).join("");
 
   function show(id) {
     const list = LISTS.find((l) => l.id === id) || LISTS[0];
-    tabsEl.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", t.dataset.id === list.id));
-    listEl.setAttribute("aria-labelledby", "tab-" + list.id);
+    document.querySelectorAll(".tile, .chip").forEach((t) => t.setAttribute("aria-selected", t.dataset.id === list.id));
+    listEl.setAttribute("aria-label", list.label);
+    listEl.style.setProperty("--c", `var(${list.c})`);
     listEl.innerHTML = `
-      <div class="list-head"><h2>${list.label}</h2><p>${list.blurb}</p></div>
+      <div class="list-head"><h2>${list.label}, <em>${list.em}</em></h2><p>${list.blurb}</p></div>
       <div class="entries">${(DATA[list.id] || []).map((p) => entry(p, list)).join("")}</div>`;
     wireSliders(listEl);
   }
-  tabsEl.addEventListener("click", (e) => {
-    const t = e.target.closest(".tab"); if (!t) return;
-    if (location.hash !== "#" + t.dataset.id) location.hash = t.dataset.id; else show(t.dataset.id);
-    const bar = document.querySelector(".tabs-bar");
-    if (bar.getBoundingClientRect().top <= 1) window.scrollTo({ top: bar.offsetTop });
+  function choose(id, scroll) {
+    if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
+    show(id);
+    if (scroll) document.querySelector(".bar").scrollIntoView({ block: "start" });
+  }
+  tilesEl.addEventListener("click", (e) => { const t = e.target.closest(".tile"); if (t) choose(t.dataset.id, true); });
+  chipsEl.addEventListener("click", (e) => {
+    const t = e.target.closest(".chip"); if (!t) return;
+    const bar = document.querySelector(".bar");
+    choose(t.dataset.id, bar.getBoundingClientRect().top <= 1);
   });
   window.addEventListener("hashchange", () => show(location.hash.slice(1)));
   show(location.hash.slice(1));
